@@ -1,0 +1,2064 @@
+
+hand project simulation.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000bd4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000058  00800060  00000bd4  00000c68  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000035  008000b8  008000b8  00000cc0  2**0
+                  ALLOC
+  3 .stab         00000954  00000000  00000000  00000cc0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      0000014d  00000000  00000000  00001614  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a0  00000000  00000000  00001768  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001eb4  00000000  00000000  00001808  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000238  00000000  00000000  000036bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000819  00000000  00000000  000038f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000278  00000000  00000000  00004110  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000862  00000000  00000000  00004388  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000006b6  00000000  00000000  00004bea  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 78 05 	jmp	0xaf0	; 0xaf0 <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 29 05 	jmp	0xa52	; 0xa52 <__vector_14>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ed       	ldi	r30, 0xD4	; 212
+  68:	fb e0       	ldi	r31, 0x0B	; 11
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 3b       	cpi	r26, 0xB8	; 184
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a8 eb       	ldi	r26, 0xB8	; 184
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ad 3e       	cpi	r26, 0xED	; 237
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 02 03 	call	0x604	; 0x604 <main>
+  8a:	0c 94 e8 05 	jmp	0xbd0	; 0xbd0 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <_Z14initialize_ADCv>:
+	}				
+}	
+
+void initialize_ADC(void)
+{
+	ADCSRA |= (1<<ADPS2) | (1<<ADIE);
+  92:	86 b1       	in	r24, 0x06	; 6
+  94:	8c 60       	ori	r24, 0x0C	; 12
+  96:	86 b9       	out	0x06, r24	; 6
+	ADMUX  |= (1<<ADLAR) |(1<<REFS0);
+  98:	87 b1       	in	r24, 0x07	; 7
+  9a:	80 66       	ori	r24, 0x60	; 96
+  9c:	87 b9       	out	0x07, r24	; 7
+ 	ADCSRA |= (1<<ADEN);
+  9e:	37 9a       	sbi	0x06, 7	; 6
+ 	ADCSRA |= (1<<ADSC);
+  a0:	36 9a       	sbi	0x06, 6	; 6
+}
+  a2:	08 95       	ret
+
+000000a4 <_Z14initialise_PWMv>:
+void initialise_PWM(void)
+{
+	TCCR1A |= (1<<WGM11);
+  a4:	8f b5       	in	r24, 0x2f	; 47
+  a6:	82 60       	ori	r24, 0x02	; 2
+  a8:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B |= (1<<WGM12) |(1<<WGM13) |(1<<CS10);
+  aa:	8e b5       	in	r24, 0x2e	; 46
+  ac:	89 61       	ori	r24, 0x19	; 25
+  ae:	8e bd       	out	0x2e, r24	; 46
+	TCCR1A |= (1<<COM1A1);
+  b0:	8f b5       	in	r24, 0x2f	; 47
+  b2:	80 68       	ori	r24, 0x80	; 128
+  b4:	8f bd       	out	0x2f, r24	; 47
+	TCCR1A |= (1<<COM1B1);
+  b6:	8f b5       	in	r24, 0x2f	; 47
+  b8:	80 62       	ori	r24, 0x20	; 32
+  ba:	8f bd       	out	0x2f, r24	; 47
+	ICR1=19999; //top value
+  bc:	8f e1       	ldi	r24, 0x1F	; 31
+  be:	9e e4       	ldi	r25, 0x4E	; 78
+  c0:	97 bd       	out	0x27, r25	; 39
+  c2:	86 bd       	out	0x26, r24	; 38
+}
+  c4:	08 95       	ret
+
+000000c6 <_Z16initialise_PWM_1v>:
+void initialise_PWM_1(void)
+{	
+	OCR1A =	PWM_value_1;
+  c6:	80 91 c2 00 	lds	r24, 0x00C2
+  ca:	90 91 c3 00 	lds	r25, 0x00C3
+  ce:	9b bd       	out	0x2b, r25	; 43
+  d0:	8a bd       	out	0x2a, r24	; 42
+}
+  d2:	08 95       	ret
+
+000000d4 <_Z16initialise_PWM_2v>:
+void initialise_PWM_2(void)
+{
+	OCR1B = PWM_value_2;
+  d4:	80 91 c0 00 	lds	r24, 0x00C0
+  d8:	90 91 c1 00 	lds	r25, 0x00C1
+  dc:	99 bd       	out	0x29, r25	; 41
+  de:	88 bd       	out	0x28, r24	; 40
+}
+  e0:	08 95       	ret
+
+000000e2 <_Z10stop_PWM_1v>:
+void stop_PWM_1(void)
+{
+	//TCCR1A &=~ (1<<COM1A1);
+	OCR1A = 0;
+  e2:	1b bc       	out	0x2b, r1	; 43
+  e4:	1a bc       	out	0x2a, r1	; 42
+}
+  e6:	08 95       	ret
+
+000000e8 <_Z10stop_PWM_2v>:
+void stop_PWM_2(void)
+{
+	//TCCR1A &=~ (1<<COM1B1);
+	OCR1B = 0;
+  e8:	19 bc       	out	0x29, r1	; 41
+  ea:	18 bc       	out	0x28, r1	; 40
+}
+  ec:	08 95       	ret
+
+000000ee <_Z18initialise_counterv>:
+	
+}
+
+void initialise_counter(void)
+{
+	TCCR0 |= (1<<CS01)|(1<<CS00);
+  ee:	83 b7       	in	r24, 0x33	; 51
+  f0:	83 60       	ori	r24, 0x03	; 3
+  f2:	83 bf       	out	0x33, r24	; 51
+	TIMSK |= (1<<TOIE0);
+  f4:	89 b7       	in	r24, 0x39	; 57
+  f6:	81 60       	ori	r24, 0x01	; 1
+  f8:	89 bf       	out	0x39, r24	; 57
+	TCNT0 = 0;
+  fa:	12 be       	out	0x32, r1	; 50
+}
+  fc:	08 95       	ret
+
+000000fe <_Z12stop_counterv>:
+void stop_counter(void)
+{
+	TCCR0 &=~ (1<<CS00);
+  fe:	83 b7       	in	r24, 0x33	; 51
+ 100:	8e 7f       	andi	r24, 0xFE	; 254
+ 102:	83 bf       	out	0x33, r24	; 51
+	TCCR0 &=~ (1<<CS01);
+ 104:	83 b7       	in	r24, 0x33	; 51
+ 106:	8d 7f       	andi	r24, 0xFD	; 253
+ 108:	83 bf       	out	0x33, r24	; 51
+	TIMSK &=~ (1<<TOIE0);
+ 10a:	89 b7       	in	r24, 0x39	; 57
+ 10c:	8e 7f       	andi	r24, 0xFE	; 254
+ 10e:	89 bf       	out	0x39, r24	; 57
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 110:	89 ef       	ldi	r24, 0xF9	; 249
+ 112:	90 e0       	ldi	r25, 0x00	; 0
+ 114:	01 97       	sbiw	r24, 0x01	; 1
+ 116:	f1 f7       	brne	.-4      	; 0x114 <_Z12stop_counterv+0x16>
+ 118:	00 c0       	rjmp	.+0      	; 0x11a <_Z12stop_counterv+0x1c>
+ 11a:	00 00       	nop
+	_delay_ms(1);
+	TCNT0=0;
+ 11c:	12 be       	out	0x32, r1	; 50
+}
+ 11e:	08 95       	ret
+
+00000120 <_Z19sw_debounce_pressedv>:
+	pressed_confidence_level++;
+	if(pressed_confidence_level>=500 )//put a debounce value///////////////
+	{
+		pressed_confidence_level=0;
+	}
+}
+ 120:	08 95       	ret
+
+00000122 <_Z20sw_debounce_releasedv>:
+
+	if(released_confidence_level>=500 )//put a debounce value//////////////
+	{
+		released_confidence_level=0;
+	}
+}
+ 122:	08 95       	ret
+
+00000124 <_Z10Peek_A_Boov>:
+	
+	DataDir_MrLCDsCrib=0xFF;
+}
+void Peek_A_Boo(void)
+{
+	MrLCDsControl |= 1<<LightSwitch;
+ 124:	af 9a       	sbi	0x15, 7	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 126:	83 e0       	ldi	r24, 0x03	; 3
+ 128:	8a 95       	dec	r24
+ 12a:	f1 f7       	brne	.-4      	; 0x128 <_Z10Peek_A_Boov+0x4>
+ 12c:	00 00       	nop
+	_delay_us(10);/////CALIBRATE IT FURTHER
+	MrLCDsControl &=~ 1<<LightSwitch;
+ 12e:	85 b3       	in	r24, 0x15	; 21
+ 130:	15 ba       	out	0x15, r1	; 21
+}
+ 132:	08 95       	ret
+
+00000134 <_Z21Check_IF_MrLCD_isBusyv>:
+	}
+}
+
+void Check_IF_MrLCD_isBusy(void)
+{
+	DataDir_MrLCDsCrib=0;
+ 134:	17 ba       	out	0x17, r1	; 23
+	MrLCDsControl |= 1<<ReadWrite;
+ 136:	ae 9a       	sbi	0x15, 6	; 21
+	MrLCDsControl &=~ 1<<BiPolarMood;
+ 138:	85 b3       	in	r24, 0x15	; 21
+ 13a:	80 7c       	andi	r24, 0xC0	; 192
+ 13c:	85 bb       	out	0x15, r24	; 21
+	
+	while(MrLCDsCrib >= 0x80)
+ 13e:	c7 9b       	sbis	0x18, 7	; 24
+ 140:	04 c0       	rjmp	.+8      	; 0x14a <_Z21Check_IF_MrLCD_isBusyv+0x16>
+	{
+		Peek_A_Boo();
+ 142:	0e 94 92 00 	call	0x124	; 0x124 <_Z10Peek_A_Boov>
+{
+	DataDir_MrLCDsCrib=0;
+	MrLCDsControl |= 1<<ReadWrite;
+	MrLCDsControl &=~ 1<<BiPolarMood;
+	
+	while(MrLCDsCrib >= 0x80)
+ 146:	c7 99       	sbic	0x18, 7	; 24
+ 148:	fc cf       	rjmp	.-8      	; 0x142 <_Z21Check_IF_MrLCD_isBusyv+0xe>
+	{
+		Peek_A_Boo();
+	}
+	
+	DataDir_MrLCDsCrib=0xFF;
+ 14a:	8f ef       	ldi	r24, 0xFF	; 255
+ 14c:	87 bb       	out	0x17, r24	; 23
+}
+ 14e:	08 95       	ret
+
+00000150 <_Z14Send_A_Commandc>:
+	MrLCDsControl |= 1<<LightSwitch;
+	_delay_us(10);/////CALIBRATE IT FURTHER
+	MrLCDsControl &=~ 1<<LightSwitch;
+}
+void Send_A_Command(char command)
+{
+ 150:	cf 93       	push	r28
+ 152:	c8 2f       	mov	r28, r24
+	Check_IF_MrLCD_isBusy();
+ 154:	0e 94 9a 00 	call	0x134	; 0x134 <_Z21Check_IF_MrLCD_isBusyv>
+	MrLCDsCrib = command;
+ 158:	c8 bb       	out	0x18, r28	; 24
+	MrLCDsControl &=~ (1<<ReadWrite|1<<BiPolarMood);
+ 15a:	85 b3       	in	r24, 0x15	; 21
+ 15c:	8f 79       	andi	r24, 0x9F	; 159
+ 15e:	85 bb       	out	0x15, r24	; 21
+	Peek_A_Boo();
+ 160:	0e 94 92 00 	call	0x124	; 0x124 <_Z10Peek_A_Boov>
+	MrLCDsCrib = 0;	
+ 164:	18 ba       	out	0x18, r1	; 24
+}
+ 166:	cf 91       	pop	r28
+ 168:	08 95       	ret
+
+0000016a <_Z16Send_A_Characterc>:
+void Send_A_Character(char character)
+{
+ 16a:	cf 93       	push	r28
+ 16c:	c8 2f       	mov	r28, r24
+	Check_IF_MrLCD_isBusy();
+ 16e:	0e 94 9a 00 	call	0x134	; 0x134 <_Z21Check_IF_MrLCD_isBusyv>
+	MrLCDsCrib = character;
+ 172:	c8 bb       	out	0x18, r28	; 24
+	MrLCDsControl &=~ (1<<ReadWrite);
+ 174:	ae 98       	cbi	0x15, 6	; 21
+	MrLCDsControl |= (1<<BiPolarMood);
+ 176:	ad 9a       	sbi	0x15, 5	; 21
+	Peek_A_Boo();
+ 178:	0e 94 92 00 	call	0x124	; 0x124 <_Z10Peek_A_Boov>
+	MrLCDsCrib = 0;
+ 17c:	18 ba       	out	0x18, r1	; 24
+}
+ 17e:	cf 91       	pop	r28
+ 180:	08 95       	ret
+
+00000182 <_Z15Send_An_Integeri>:
+void Send_An_Integer(int integer)
+{
+ 182:	cf 93       	push	r28
+ 184:	c8 2f       	mov	r28, r24
+	Check_IF_MrLCD_isBusy();
+ 186:	0e 94 9a 00 	call	0x134	; 0x134 <_Z21Check_IF_MrLCD_isBusyv>
+	MrLCDsCrib = integer;
+ 18a:	c8 bb       	out	0x18, r28	; 24
+	MrLCDsControl &=~ (1<<ReadWrite);
+ 18c:	ae 98       	cbi	0x15, 6	; 21
+	MrLCDsControl |= (1<<BiPolarMood);
+ 18e:	ad 9a       	sbi	0x15, 5	; 21
+	Peek_A_Boo();
+ 190:	0e 94 92 00 	call	0x124	; 0x124 <_Z10Peek_A_Boov>
+	MrLCDsCrib = 0;
+ 194:	18 ba       	out	0x18, r1	; 24
+}
+ 196:	cf 91       	pop	r28
+ 198:	08 95       	ret
+
+0000019a <_Z13Send_A_StringPc>:
+void Send_A_String(char *stringOfCharacters)
+{
+ 19a:	cf 93       	push	r28
+ 19c:	df 93       	push	r29
+ 19e:	ec 01       	movw	r28, r24
+	while(*stringOfCharacters > 0)
+ 1a0:	88 81       	ld	r24, Y
+ 1a2:	88 23       	and	r24, r24
+ 1a4:	31 f0       	breq	.+12     	; 0x1b2 <_Z13Send_A_StringPc+0x18>
+	MrLCDsControl &=~ (1<<ReadWrite);
+	MrLCDsControl |= (1<<BiPolarMood);
+	Peek_A_Boo();
+	MrLCDsCrib = 0;
+}
+void Send_A_String(char *stringOfCharacters)
+ 1a6:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*stringOfCharacters > 0)
+	{
+		Send_A_Character(*stringOfCharacters++);
+ 1a8:	0e 94 b5 00 	call	0x16a	; 0x16a <_Z16Send_A_Characterc>
+	Peek_A_Boo();
+	MrLCDsCrib = 0;
+}
+void Send_A_String(char *stringOfCharacters)
+{
+	while(*stringOfCharacters > 0)
+ 1ac:	89 91       	ld	r24, Y+
+ 1ae:	88 23       	and	r24, r24
+ 1b0:	d9 f7       	brne	.-10     	; 0x1a8 <_Z13Send_A_StringPc+0xe>
+	{
+		Send_A_Character(*stringOfCharacters++);
+		//_delay_ms(10);
+	}
+}
+ 1b2:	df 91       	pop	r29
+ 1b4:	cf 91       	pop	r28
+ 1b6:	08 95       	ret
+
+000001b8 <_Z18Motor_2_Switch_OFFv>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1b8:	81 ee       	ldi	r24, 0xE1	; 225
+ 1ba:	94 e0       	ldi	r25, 0x04	; 4
+ 1bc:	01 97       	sbiw	r24, 0x01	; 1
+ 1be:	f1 f7       	brne	.-4      	; 0x1bc <_Z18Motor_2_Switch_OFFv+0x4>
+ 1c0:	00 c0       	rjmp	.+0      	; 0x1c2 <_Z18Motor_2_Switch_OFFv+0xa>
+ 1c2:	00 00       	nop
+}
+void Motor_2_Switch_OFF(void)
+{
+	//////////////
+	_delay_ms(5);
+	PORTD &=~ (1<<PIND0);
+ 1c4:	90 98       	cbi	0x12, 0	; 18
+	PORTD &=~ (1<<PIND1);
+ 1c6:	91 98       	cbi	0x12, 1	; 18
+	PORTD &=~ (1<<PIND4);
+ 1c8:	94 98       	cbi	0x12, 4	; 18
+ 1ca:	81 ee       	ldi	r24, 0xE1	; 225
+ 1cc:	94 e0       	ldi	r25, 0x04	; 4
+ 1ce:	01 97       	sbiw	r24, 0x01	; 1
+ 1d0:	f1 f7       	brne	.-4      	; 0x1ce <_Z18Motor_2_Switch_OFFv+0x16>
+ 1d2:	00 c0       	rjmp	.+0      	; 0x1d4 <_Z18Motor_2_Switch_OFFv+0x1c>
+ 1d4:	00 00       	nop
+	_delay_ms(5);
+	
+	Send_A_Command(0xC0 + 10);//();
+ 1d6:	8a ec       	ldi	r24, 0xCA	; 202
+ 1d8:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 1dc:	83 ef       	ldi	r24, 0xF3	; 243
+ 1de:	91 e0       	ldi	r25, 0x01	; 1
+ 1e0:	01 97       	sbiw	r24, 0x01	; 1
+ 1e2:	f1 f7       	brne	.-4      	; 0x1e0 <_Z18Motor_2_Switch_OFFv+0x28>
+ 1e4:	00 c0       	rjmp	.+0      	; 0x1e6 <_Z18Motor_2_Switch_OFFv+0x2e>
+ 1e6:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("          ");
+ 1e8:	80 e6       	ldi	r24, 0x60	; 96
+ 1ea:	90 e0       	ldi	r25, 0x00	; 0
+ 1ec:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 1f0:	83 ef       	ldi	r24, 0xF3	; 243
+ 1f2:	91 e0       	ldi	r25, 0x01	; 1
+ 1f4:	01 97       	sbiw	r24, 0x01	; 1
+ 1f6:	f1 f7       	brne	.-4      	; 0x1f4 <_Z18Motor_2_Switch_OFFv+0x3c>
+ 1f8:	00 c0       	rjmp	.+0      	; 0x1fa <_Z18Motor_2_Switch_OFFv+0x42>
+ 1fa:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0 + 10);//();
+ 1fc:	8a ec       	ldi	r24, 0xCA	; 202
+ 1fe:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 202:	83 ef       	ldi	r24, 0xF3	; 243
+ 204:	91 e0       	ldi	r25, 0x01	; 1
+ 206:	01 97       	sbiw	r24, 0x01	; 1
+ 208:	f1 f7       	brne	.-4      	; 0x206 <_Z18Motor_2_Switch_OFFv+0x4e>
+ 20a:	00 c0       	rjmp	.+0      	; 0x20c <_Z18Motor_2_Switch_OFFv+0x54>
+ 20c:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("NEUTRAL");
+ 20e:	8b e6       	ldi	r24, 0x6B	; 107
+ 210:	90 e0       	ldi	r25, 0x00	; 0
+ 212:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+	
+}
+ 216:	08 95       	ret
+
+00000218 <_Z31Motor_2_Direction_Anticlockwisev>:
+ 218:	81 ee       	ldi	r24, 0xE1	; 225
+ 21a:	94 e0       	ldi	r25, 0x04	; 4
+ 21c:	01 97       	sbiw	r24, 0x01	; 1
+ 21e:	f1 f7       	brne	.-4      	; 0x21c <_Z31Motor_2_Direction_Anticlockwisev+0x4>
+ 220:	00 c0       	rjmp	.+0      	; 0x222 <_Z31Motor_2_Direction_Anticlockwisev+0xa>
+ 222:	00 00       	nop
+	Send_A_String("OPEN CLAW");
+}
+void Motor_2_Direction_Anticlockwise(void)
+{
+	_delay_ms(5);
+	PORTD |= (1<<PIND1);
+ 224:	91 9a       	sbi	0x12, 1	; 18
+	PORTD &=~ (1<<PIND0);
+ 226:	90 98       	cbi	0x12, 0	; 18
+ 228:	81 ee       	ldi	r24, 0xE1	; 225
+ 22a:	94 e0       	ldi	r25, 0x04	; 4
+ 22c:	01 97       	sbiw	r24, 0x01	; 1
+ 22e:	f1 f7       	brne	.-4      	; 0x22c <_Z31Motor_2_Direction_Anticlockwisev+0x14>
+ 230:	00 c0       	rjmp	.+0      	; 0x232 <_Z31Motor_2_Direction_Anticlockwisev+0x1a>
+ 232:	00 00       	nop
+	_delay_ms(5);
+	////////////
+	Send_A_Command(0xC0 + 10);//();
+ 234:	8a ec       	ldi	r24, 0xCA	; 202
+ 236:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 23a:	83 ef       	ldi	r24, 0xF3	; 243
+ 23c:	91 e0       	ldi	r25, 0x01	; 1
+ 23e:	01 97       	sbiw	r24, 0x01	; 1
+ 240:	f1 f7       	brne	.-4      	; 0x23e <_Z31Motor_2_Direction_Anticlockwisev+0x26>
+ 242:	00 c0       	rjmp	.+0      	; 0x244 <_Z31Motor_2_Direction_Anticlockwisev+0x2c>
+ 244:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("          ");
+ 246:	80 e6       	ldi	r24, 0x60	; 96
+ 248:	90 e0       	ldi	r25, 0x00	; 0
+ 24a:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 24e:	83 ef       	ldi	r24, 0xF3	; 243
+ 250:	91 e0       	ldi	r25, 0x01	; 1
+ 252:	01 97       	sbiw	r24, 0x01	; 1
+ 254:	f1 f7       	brne	.-4      	; 0x252 <_Z31Motor_2_Direction_Anticlockwisev+0x3a>
+ 256:	00 c0       	rjmp	.+0      	; 0x258 <_Z31Motor_2_Direction_Anticlockwisev+0x40>
+ 258:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0 + 10);//();
+ 25a:	8a ec       	ldi	r24, 0xCA	; 202
+ 25c:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 260:	83 ef       	ldi	r24, 0xF3	; 243
+ 262:	91 e0       	ldi	r25, 0x01	; 1
+ 264:	01 97       	sbiw	r24, 0x01	; 1
+ 266:	f1 f7       	brne	.-4      	; 0x264 <_Z31Motor_2_Direction_Anticlockwisev+0x4c>
+ 268:	00 c0       	rjmp	.+0      	; 0x26a <_Z31Motor_2_Direction_Anticlockwisev+0x52>
+ 26a:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("CLOSE CLAW");
+ 26c:	83 e7       	ldi	r24, 0x73	; 115
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+}
+ 274:	08 95       	ret
+
+00000276 <_Z27Motor_2_Direction_Clockwisev>:
+ 276:	81 ee       	ldi	r24, 0xE1	; 225
+ 278:	94 e0       	ldi	r25, 0x04	; 4
+ 27a:	01 97       	sbiw	r24, 0x01	; 1
+ 27c:	f1 f7       	brne	.-4      	; 0x27a <_Z27Motor_2_Direction_Clockwisev+0x4>
+ 27e:	00 c0       	rjmp	.+0      	; 0x280 <_Z27Motor_2_Direction_Clockwisev+0xa>
+ 280:	00 00       	nop
+	Send_A_String("NEUTRAL");
+}
+void Motor_2_Direction_Clockwise(void)
+{
+	_delay_ms(5);
+	PORTD |= (1<<PIND0);
+ 282:	90 9a       	sbi	0x12, 0	; 18
+	PORTD &=~ (1<<PIND1);
+ 284:	91 98       	cbi	0x12, 1	; 18
+ 286:	81 ee       	ldi	r24, 0xE1	; 225
+ 288:	94 e0       	ldi	r25, 0x04	; 4
+ 28a:	01 97       	sbiw	r24, 0x01	; 1
+ 28c:	f1 f7       	brne	.-4      	; 0x28a <_Z27Motor_2_Direction_Clockwisev+0x14>
+ 28e:	00 c0       	rjmp	.+0      	; 0x290 <_Z27Motor_2_Direction_Clockwisev+0x1a>
+ 290:	00 00       	nop
+	_delay_ms(5);
+	/////////////
+	Send_A_Command(0xC0 + 10);//();
+ 292:	8a ec       	ldi	r24, 0xCA	; 202
+ 294:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 298:	83 ef       	ldi	r24, 0xF3	; 243
+ 29a:	91 e0       	ldi	r25, 0x01	; 1
+ 29c:	01 97       	sbiw	r24, 0x01	; 1
+ 29e:	f1 f7       	brne	.-4      	; 0x29c <_Z27Motor_2_Direction_Clockwisev+0x26>
+ 2a0:	00 c0       	rjmp	.+0      	; 0x2a2 <_Z27Motor_2_Direction_Clockwisev+0x2c>
+ 2a2:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("          ");
+ 2a4:	80 e6       	ldi	r24, 0x60	; 96
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 2ac:	83 ef       	ldi	r24, 0xF3	; 243
+ 2ae:	91 e0       	ldi	r25, 0x01	; 1
+ 2b0:	01 97       	sbiw	r24, 0x01	; 1
+ 2b2:	f1 f7       	brne	.-4      	; 0x2b0 <_Z27Motor_2_Direction_Clockwisev+0x3a>
+ 2b4:	00 c0       	rjmp	.+0      	; 0x2b6 <_Z27Motor_2_Direction_Clockwisev+0x40>
+ 2b6:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0 + 10);//();
+ 2b8:	8a ec       	ldi	r24, 0xCA	; 202
+ 2ba:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 2be:	83 ef       	ldi	r24, 0xF3	; 243
+ 2c0:	91 e0       	ldi	r25, 0x01	; 1
+ 2c2:	01 97       	sbiw	r24, 0x01	; 1
+ 2c4:	f1 f7       	brne	.-4      	; 0x2c2 <_Z27Motor_2_Direction_Clockwisev+0x4c>
+ 2c6:	00 c0       	rjmp	.+0      	; 0x2c8 <_Z27Motor_2_Direction_Clockwisev+0x52>
+ 2c8:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("OPEN CLAW");
+ 2ca:	8e e7       	ldi	r24, 0x7E	; 126
+ 2cc:	90 e0       	ldi	r25, 0x00	; 0
+ 2ce:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+}
+ 2d2:	08 95       	ret
+
+000002d4 <_Z18Motor_1_Switch_OFFv>:
+ 2d4:	81 ee       	ldi	r24, 0xE1	; 225
+ 2d6:	94 e0       	ldi	r25, 0x04	; 4
+ 2d8:	01 97       	sbiw	r24, 0x01	; 1
+ 2da:	f1 f7       	brne	.-4      	; 0x2d8 <_Z18Motor_1_Switch_OFFv+0x4>
+ 2dc:	00 c0       	rjmp	.+0      	; 0x2de <_Z18Motor_1_Switch_OFFv+0xa>
+ 2de:	00 00       	nop
+}
+void Motor_1_Switch_OFF(void)
+{
+	//////////////
+	_delay_ms(5);
+	PORTD &=~ (1<<PIND6);
+ 2e0:	96 98       	cbi	0x12, 6	; 18
+	PORTD &=~ (1<<PIND7);
+ 2e2:	97 98       	cbi	0x12, 7	; 18
+	PORTD &=~ (1<<PIND5);
+ 2e4:	95 98       	cbi	0x12, 5	; 18
+ 2e6:	81 ee       	ldi	r24, 0xE1	; 225
+ 2e8:	94 e0       	ldi	r25, 0x04	; 4
+ 2ea:	01 97       	sbiw	r24, 0x01	; 1
+ 2ec:	f1 f7       	brne	.-4      	; 0x2ea <_Z18Motor_1_Switch_OFFv+0x16>
+ 2ee:	00 c0       	rjmp	.+0      	; 0x2f0 <_Z18Motor_1_Switch_OFFv+0x1c>
+ 2f0:	00 00       	nop
+	_delay_ms(5);
+	Send_A_Command(0xC0);//();
+ 2f2:	80 ec       	ldi	r24, 0xC0	; 192
+ 2f4:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 2f8:	83 ef       	ldi	r24, 0xF3	; 243
+ 2fa:	91 e0       	ldi	r25, 0x01	; 1
+ 2fc:	01 97       	sbiw	r24, 0x01	; 1
+ 2fe:	f1 f7       	brne	.-4      	; 0x2fc <_Z18Motor_1_Switch_OFFv+0x28>
+ 300:	00 c0       	rjmp	.+0      	; 0x302 <_Z18Motor_1_Switch_OFFv+0x2e>
+ 302:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("         ");
+ 304:	88 e8       	ldi	r24, 0x88	; 136
+ 306:	90 e0       	ldi	r25, 0x00	; 0
+ 308:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 30c:	83 ef       	ldi	r24, 0xF3	; 243
+ 30e:	91 e0       	ldi	r25, 0x01	; 1
+ 310:	01 97       	sbiw	r24, 0x01	; 1
+ 312:	f1 f7       	brne	.-4      	; 0x310 <_Z18Motor_1_Switch_OFFv+0x3c>
+ 314:	00 c0       	rjmp	.+0      	; 0x316 <_Z18Motor_1_Switch_OFFv+0x42>
+ 316:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0);//();
+ 318:	80 ec       	ldi	r24, 0xC0	; 192
+ 31a:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 31e:	83 ef       	ldi	r24, 0xF3	; 243
+ 320:	91 e0       	ldi	r25, 0x01	; 1
+ 322:	01 97       	sbiw	r24, 0x01	; 1
+ 324:	f1 f7       	brne	.-4      	; 0x322 <_Z18Motor_1_Switch_OFFv+0x4e>
+ 326:	00 c0       	rjmp	.+0      	; 0x328 <_Z18Motor_1_Switch_OFFv+0x54>
+ 328:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("NEUTRAL");
+ 32a:	8b e6       	ldi	r24, 0x6B	; 107
+ 32c:	90 e0       	ldi	r25, 0x00	; 0
+ 32e:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+}
+ 332:	08 95       	ret
+
+00000334 <_Z31Motor_1_Direction_Anticlockwisev>:
+ 334:	81 ee       	ldi	r24, 0xE1	; 225
+ 336:	94 e0       	ldi	r25, 0x04	; 4
+ 338:	01 97       	sbiw	r24, 0x01	; 1
+ 33a:	f1 f7       	brne	.-4      	; 0x338 <_Z31Motor_1_Direction_Anticlockwisev+0x4>
+ 33c:	00 c0       	rjmp	.+0      	; 0x33e <_Z31Motor_1_Direction_Anticlockwisev+0xa>
+ 33e:	00 00       	nop
+}
+void Motor_1_Direction_Anticlockwise(void)
+{
+	//////////////
+	_delay_ms(5);
+	PORTD |= (1<<PIND7);
+ 340:	97 9a       	sbi	0x12, 7	; 18
+	PORTD &=~ (1<<PIND6);
+ 342:	96 98       	cbi	0x12, 6	; 18
+ 344:	81 ee       	ldi	r24, 0xE1	; 225
+ 346:	94 e0       	ldi	r25, 0x04	; 4
+ 348:	01 97       	sbiw	r24, 0x01	; 1
+ 34a:	f1 f7       	brne	.-4      	; 0x348 <_Z31Motor_1_Direction_Anticlockwisev+0x14>
+ 34c:	00 c0       	rjmp	.+0      	; 0x34e <_Z31Motor_1_Direction_Anticlockwisev+0x1a>
+ 34e:	00 00       	nop
+	_delay_ms(5);
+	
+	Send_A_Command(0xC0);//();
+ 350:	80 ec       	ldi	r24, 0xC0	; 192
+ 352:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 356:	83 ef       	ldi	r24, 0xF3	; 243
+ 358:	91 e0       	ldi	r25, 0x01	; 1
+ 35a:	01 97       	sbiw	r24, 0x01	; 1
+ 35c:	f1 f7       	brne	.-4      	; 0x35a <_Z31Motor_1_Direction_Anticlockwisev+0x26>
+ 35e:	00 c0       	rjmp	.+0      	; 0x360 <_Z31Motor_1_Direction_Anticlockwisev+0x2c>
+ 360:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("         ");
+ 362:	88 e8       	ldi	r24, 0x88	; 136
+ 364:	90 e0       	ldi	r25, 0x00	; 0
+ 366:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 36a:	83 ef       	ldi	r24, 0xF3	; 243
+ 36c:	91 e0       	ldi	r25, 0x01	; 1
+ 36e:	01 97       	sbiw	r24, 0x01	; 1
+ 370:	f1 f7       	brne	.-4      	; 0x36e <_Z31Motor_1_Direction_Anticlockwisev+0x3a>
+ 372:	00 c0       	rjmp	.+0      	; 0x374 <_Z31Motor_1_Direction_Anticlockwisev+0x40>
+ 374:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0);//();
+ 376:	80 ec       	ldi	r24, 0xC0	; 192
+ 378:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 37c:	83 ef       	ldi	r24, 0xF3	; 243
+ 37e:	91 e0       	ldi	r25, 0x01	; 1
+ 380:	01 97       	sbiw	r24, 0x01	; 1
+ 382:	f1 f7       	brne	.-4      	; 0x380 <_Z31Motor_1_Direction_Anticlockwisev+0x4c>
+ 384:	00 c0       	rjmp	.+0      	; 0x386 <_Z31Motor_1_Direction_Anticlockwisev+0x52>
+ 386:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("DEXTRAL");
+ 388:	82 e9       	ldi	r24, 0x92	; 146
+ 38a:	90 e0       	ldi	r25, 0x00	; 0
+ 38c:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+}
+ 390:	08 95       	ret
+
+00000392 <_Z27Motor_1_Direction_Clockwisev>:
+ 392:	81 ee       	ldi	r24, 0xE1	; 225
+ 394:	94 e0       	ldi	r25, 0x04	; 4
+ 396:	01 97       	sbiw	r24, 0x01	; 1
+ 398:	f1 f7       	brne	.-4      	; 0x396 <_Z27Motor_1_Direction_Clockwisev+0x4>
+ 39a:	00 c0       	rjmp	.+0      	; 0x39c <_Z27Motor_1_Direction_Clockwisev+0xa>
+ 39c:	00 00       	nop
+	OCR1B = 0;
+}
+void Motor_1_Direction_Clockwise(void)
+{	
+	_delay_ms(5);
+	PORTD |= (1<<PIND6);
+ 39e:	96 9a       	sbi	0x12, 6	; 18
+	PORTD &=~ (1<<PIND7);
+ 3a0:	97 98       	cbi	0x12, 7	; 18
+ 3a2:	81 ee       	ldi	r24, 0xE1	; 225
+ 3a4:	94 e0       	ldi	r25, 0x04	; 4
+ 3a6:	01 97       	sbiw	r24, 0x01	; 1
+ 3a8:	f1 f7       	brne	.-4      	; 0x3a6 <_Z27Motor_1_Direction_Clockwisev+0x14>
+ 3aa:	00 c0       	rjmp	.+0      	; 0x3ac <_Z27Motor_1_Direction_Clockwisev+0x1a>
+ 3ac:	00 00       	nop
+	_delay_ms(5);
+	/////////////
+	Send_A_Command(0xC0);//();
+ 3ae:	80 ec       	ldi	r24, 0xC0	; 192
+ 3b0:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 3b4:	83 ef       	ldi	r24, 0xF3	; 243
+ 3b6:	91 e0       	ldi	r25, 0x01	; 1
+ 3b8:	01 97       	sbiw	r24, 0x01	; 1
+ 3ba:	f1 f7       	brne	.-4      	; 0x3b8 <_Z27Motor_1_Direction_Clockwisev+0x26>
+ 3bc:	00 c0       	rjmp	.+0      	; 0x3be <_Z27Motor_1_Direction_Clockwisev+0x2c>
+ 3be:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("         ");
+ 3c0:	88 e8       	ldi	r24, 0x88	; 136
+ 3c2:	90 e0       	ldi	r25, 0x00	; 0
+ 3c4:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 3c8:	83 ef       	ldi	r24, 0xF3	; 243
+ 3ca:	91 e0       	ldi	r25, 0x01	; 1
+ 3cc:	01 97       	sbiw	r24, 0x01	; 1
+ 3ce:	f1 f7       	brne	.-4      	; 0x3cc <_Z27Motor_1_Direction_Clockwisev+0x3a>
+ 3d0:	00 c0       	rjmp	.+0      	; 0x3d2 <_Z27Motor_1_Direction_Clockwisev+0x40>
+ 3d2:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0xC0);//();
+ 3d4:	80 ec       	ldi	r24, 0xC0	; 192
+ 3d6:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 3da:	83 ef       	ldi	r24, 0xF3	; 243
+ 3dc:	91 e0       	ldi	r25, 0x01	; 1
+ 3de:	01 97       	sbiw	r24, 0x01	; 1
+ 3e0:	f1 f7       	brne	.-4      	; 0x3de <_Z27Motor_1_Direction_Clockwisev+0x4c>
+ 3e2:	00 c0       	rjmp	.+0      	; 0x3e4 <_Z27Motor_1_Direction_Clockwisev+0x52>
+ 3e4:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("SINISTRAL");
+ 3e6:	8a e9       	ldi	r24, 0x9A	; 154
+ 3e8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ea:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+	
+}
+ 3ee:	08 95       	ret
+
+000003f0 <_Z18Send_A_String_instPc>:
+		Send_A_Character(*stringOfCharacters++);
+		//_delay_ms(10);
+	}
+}
+void Send_A_String_inst(char *stringOfCharacters)
+{
+ 3f0:	cf 93       	push	r28
+ 3f2:	df 93       	push	r29
+ 3f4:	ec 01       	movw	r28, r24
+	while(*stringOfCharacters > 0)
+ 3f6:	88 81       	ld	r24, Y
+ 3f8:	88 23       	and	r24, r24
+ 3fa:	31 f0       	breq	.+12     	; 0x408 <_Z18Send_A_String_instPc+0x18>
+	{
+		Send_A_Character(*stringOfCharacters++);
+		//_delay_ms(10);
+	}
+}
+void Send_A_String_inst(char *stringOfCharacters)
+ 3fc:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*stringOfCharacters > 0)
+	{
+		Send_A_Character(*stringOfCharacters++);// _delay_ms(50);
+ 3fe:	0e 94 b5 00 	call	0x16a	; 0x16a <_Z16Send_A_Characterc>
+		//_delay_ms(10);
+	}
+}
+void Send_A_String_inst(char *stringOfCharacters)
+{
+	while(*stringOfCharacters > 0)
+ 402:	89 91       	ld	r24, Y+
+ 404:	88 23       	and	r24, r24
+ 406:	d9 f7       	brne	.-10     	; 0x3fe <_Z18Send_A_String_instPc+0xe>
+	{
+		Send_A_Character(*stringOfCharacters++);// _delay_ms(50);
+	}
+}
+ 408:	df 91       	pop	r29
+ 40a:	cf 91       	pop	r28
+ 40c:	08 95       	ret
+
+0000040e <_Z22Assign_motor_directionv>:
+
+void Assign_motor_direction (void)
+{
+	switch (ADC_Channnel)
+ 40e:	80 91 bc 00 	lds	r24, 0x00BC
+ 412:	90 91 bd 00 	lds	r25, 0x00BD
+ 416:	81 30       	cpi	r24, 0x01	; 1
+ 418:	91 05       	cpc	r25, r1
+ 41a:	21 f0       	breq	.+8      	; 0x424 <_Z22Assign_motor_directionv+0x16>
+ 41c:	82 30       	cpi	r24, 0x02	; 2
+ 41e:	91 05       	cpc	r25, r1
+ 420:	41 f5       	brne	.+80     	; 0x472 <__stack+0x13>
+ 422:	14 c0       	rjmp	.+40     	; 0x44c <_Z22Assign_motor_directionv+0x3e>
+	{
+		case 1:
+		if (converted_value_1 < 0)
+ 424:	80 91 ca 00 	lds	r24, 0x00CA
+ 428:	90 91 cb 00 	lds	r25, 0x00CB
+ 42c:	99 23       	and	r25, r25
+ 42e:	1c f4       	brge	.+6      	; 0x436 <_Z22Assign_motor_directionv+0x28>
+		{
+			Motor_1_Direction_Anticlockwise();
+ 430:	0e 94 9a 01 	call	0x334	; 0x334 <_Z31Motor_1_Direction_Anticlockwisev>
+ 434:	08 95       	ret
+		}
+		else
+		if (converted_value_1 > 0)
+ 436:	18 16       	cp	r1, r24
+ 438:	19 06       	cpc	r1, r25
+ 43a:	1c f4       	brge	.+6      	; 0x442 <_Z22Assign_motor_directionv+0x34>
+		{
+			Motor_1_Direction_Clockwise();			
+ 43c:	0e 94 c9 01 	call	0x392	; 0x392 <_Z27Motor_1_Direction_Clockwisev>
+ 440:	08 95       	ret
+		}
+		else
+		if (converted_value_1 == 0)
+ 442:	00 97       	sbiw	r24, 0x00	; 0
+ 444:	b1 f4       	brne	.+44     	; 0x472 <__stack+0x13>
+		{
+			Motor_1_Switch_OFF();
+ 446:	0e 94 6a 01 	call	0x2d4	; 0x2d4 <_Z18Motor_1_Switch_OFFv>
+ 44a:	08 95       	ret
+		}
+		break;
+		
+		case 2:
+		if (converted_value_2 < 0)
+ 44c:	80 91 c8 00 	lds	r24, 0x00C8
+ 450:	90 91 c9 00 	lds	r25, 0x00C9
+ 454:	99 23       	and	r25, r25
+ 456:	1c f4       	brge	.+6      	; 0x45e <_Z22Assign_motor_directionv+0x50>
+		{
+			Motor_2_Direction_Anticlockwise();
+ 458:	0e 94 0c 01 	call	0x218	; 0x218 <_Z31Motor_2_Direction_Anticlockwisev>
+ 45c:	08 95       	ret
+		}
+		else
+		if (converted_value_2 > 0)
+ 45e:	18 16       	cp	r1, r24
+ 460:	19 06       	cpc	r1, r25
+ 462:	1c f4       	brge	.+6      	; 0x46a <__stack+0xb>
+		{
+			Motor_2_Direction_Clockwise();
+ 464:	0e 94 3b 01 	call	0x276	; 0x276 <_Z27Motor_2_Direction_Clockwisev>
+ 468:	08 95       	ret
+		}	
+		else
+		if (converted_value_2 == 0)
+ 46a:	00 97       	sbiw	r24, 0x00	; 0
+ 46c:	11 f4       	brne	.+4      	; 0x472 <__stack+0x13>
+		{
+			Motor_2_Switch_OFF();
+ 46e:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <_Z18Motor_2_Switch_OFFv>
+ 472:	08 95       	ret
+
+00000474 <_Z30converted_value_preobfuscationv>:
+		break;	
+	}		
+}
+void converted_value_preobfuscation(void)
+{
+	switch (ADC_Channnel)
+ 474:	80 91 bc 00 	lds	r24, 0x00BC
+ 478:	90 91 bd 00 	lds	r25, 0x00BD
+ 47c:	81 30       	cpi	r24, 0x01	; 1
+ 47e:	91 05       	cpc	r25, r1
+ 480:	21 f0       	breq	.+8      	; 0x48a <_Z30converted_value_preobfuscationv+0x16>
+ 482:	82 30       	cpi	r24, 0x02	; 2
+ 484:	91 05       	cpc	r25, r1
+ 486:	c9 f4       	brne	.+50     	; 0x4ba <_Z30converted_value_preobfuscationv+0x46>
+ 488:	0c c0       	rjmp	.+24     	; 0x4a2 <_Z30converted_value_preobfuscationv+0x2e>
+	{
+		case 1:
+		if (converted_value_1 <= 20 && converted_value_1 >= -20)
+ 48a:	80 91 ca 00 	lds	r24, 0x00CA
+ 48e:	90 91 cb 00 	lds	r25, 0x00CB
+ 492:	44 96       	adiw	r24, 0x14	; 20
+ 494:	89 32       	cpi	r24, 0x29	; 41
+ 496:	91 05       	cpc	r25, r1
+ 498:	20 f4       	brcc	.+8      	; 0x4a2 <_Z30converted_value_preobfuscationv+0x2e>
+		{
+			converted_value_1 = 0;
+ 49a:	10 92 cb 00 	sts	0x00CB, r1
+ 49e:	10 92 ca 00 	sts	0x00CA, r1
+		}
+		
+		case 2:
+		if (converted_value_2 <= 20 && converted_value_2 >= -20)
+ 4a2:	80 91 c8 00 	lds	r24, 0x00C8
+ 4a6:	90 91 c9 00 	lds	r25, 0x00C9
+ 4aa:	44 96       	adiw	r24, 0x14	; 20
+ 4ac:	89 32       	cpi	r24, 0x29	; 41
+ 4ae:	91 05       	cpc	r25, r1
+ 4b0:	20 f4       	brcc	.+8      	; 0x4ba <_Z30converted_value_preobfuscationv+0x46>
+		{
+			converted_value_2 = 0;
+ 4b2:	10 92 c9 00 	sts	0x00C9, r1
+ 4b6:	10 92 c8 00 	sts	0x00C8, r1
+ 4ba:	08 95       	ret
+
+000004bc <_Z26converted_value_absolutionv>:
+		}
+	}	
+}
+void converted_value_absolution (void)
+{
+	switch (ADC_Channnel)
+ 4bc:	80 91 bc 00 	lds	r24, 0x00BC
+ 4c0:	90 91 bd 00 	lds	r25, 0x00BD
+ 4c4:	81 30       	cpi	r24, 0x01	; 1
+ 4c6:	91 05       	cpc	r25, r1
+ 4c8:	29 f0       	breq	.+10     	; 0x4d4 <_Z26converted_value_absolutionv+0x18>
+ 4ca:	82 30       	cpi	r24, 0x02	; 2
+ 4cc:	91 05       	cpc	r25, r1
+ 4ce:	09 f0       	breq	.+2      	; 0x4d2 <_Z26converted_value_absolutionv+0x16>
+ 4d0:	42 c0       	rjmp	.+132    	; 0x556 <_Z26converted_value_absolutionv+0x9a>
+ 4d2:	21 c0       	rjmp	.+66     	; 0x516 <_Z26converted_value_absolutionv+0x5a>
+	{
+		case 1:
+		
+		if (converted_value_1 <= 20 && converted_value_1 >= -20)
+ 4d4:	80 91 ca 00 	lds	r24, 0x00CA
+ 4d8:	90 91 cb 00 	lds	r25, 0x00CB
+ 4dc:	9c 01       	movw	r18, r24
+ 4de:	2c 5e       	subi	r18, 0xEC	; 236
+ 4e0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4e2:	29 32       	cpi	r18, 0x29	; 41
+ 4e4:	31 05       	cpc	r19, r1
+ 4e6:	28 f4       	brcc	.+10     	; 0x4f2 <_Z26converted_value_absolutionv+0x36>
+		{
+			converted_absolute_value_1 = 0;
+ 4e8:	10 92 c7 00 	sts	0x00C7, r1
+ 4ec:	10 92 c6 00 	sts	0x00C6, r1
+ 4f0:	08 95       	ret
+		}
+		else
+		{
+			if (converted_value_1 > 0)
+ 4f2:	18 16       	cp	r1, r24
+ 4f4:	19 06       	cpc	r1, r25
+ 4f6:	2c f4       	brge	.+10     	; 0x502 <_Z26converted_value_absolutionv+0x46>
+			{
+				converted_absolute_value_1 = converted_value_1;
+ 4f8:	90 93 c7 00 	sts	0x00C7, r25
+ 4fc:	80 93 c6 00 	sts	0x00C6, r24
+ 500:	08 95       	ret
+			}
+			else
+			if (converted_value_1 < 0)
+ 502:	99 23       	and	r25, r25
+ 504:	44 f5       	brge	.+80     	; 0x556 <_Z26converted_value_absolutionv+0x9a>
+			{
+				converted_absolute_value_1 = converted_value_1*(-1);
+ 506:	90 95       	com	r25
+ 508:	81 95       	neg	r24
+ 50a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 50c:	90 93 c7 00 	sts	0x00C7, r25
+ 510:	80 93 c6 00 	sts	0x00C6, r24
+ 514:	08 95       	ret
+		
+		break;
+		
+		case 2:
+		
+		if (converted_value_2 <= 20 && converted_value_2 >= -20)
+ 516:	80 91 c8 00 	lds	r24, 0x00C8
+ 51a:	90 91 c9 00 	lds	r25, 0x00C9
+ 51e:	9c 01       	movw	r18, r24
+ 520:	2c 5e       	subi	r18, 0xEC	; 236
+ 522:	3f 4f       	sbci	r19, 0xFF	; 255
+ 524:	29 32       	cpi	r18, 0x29	; 41
+ 526:	31 05       	cpc	r19, r1
+ 528:	28 f4       	brcc	.+10     	; 0x534 <_Z26converted_value_absolutionv+0x78>
+		{
+			converted_absolute_value_2 = 0;
+ 52a:	10 92 c5 00 	sts	0x00C5, r1
+ 52e:	10 92 c4 00 	sts	0x00C4, r1
+ 532:	08 95       	ret
+		}
+		else
+		{
+			if (converted_value_2 > 0)
+ 534:	18 16       	cp	r1, r24
+ 536:	19 06       	cpc	r1, r25
+ 538:	2c f4       	brge	.+10     	; 0x544 <_Z26converted_value_absolutionv+0x88>
+			{
+				converted_absolute_value_2 = converted_value_2;
+ 53a:	90 93 c5 00 	sts	0x00C5, r25
+ 53e:	80 93 c4 00 	sts	0x00C4, r24
+ 542:	08 95       	ret
+			}
+			else
+			if (converted_value_2 < 0)
+ 544:	99 23       	and	r25, r25
+ 546:	3c f4       	brge	.+14     	; 0x556 <_Z26converted_value_absolutionv+0x9a>
+			{
+				converted_absolute_value_2 = converted_value_2*(-1);
+ 548:	90 95       	com	r25
+ 54a:	81 95       	neg	r24
+ 54c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 54e:	90 93 c5 00 	sts	0x00C5, r25
+ 552:	80 93 c4 00 	sts	0x00C4, r24
+ 556:	08 95       	ret
+
+00000558 <_Z17convert_PWM_valuev>:
+	
+}
+
+void convert_PWM_value(void)
+{
+	if (ADC_Channnel == 1)
+ 558:	80 91 bc 00 	lds	r24, 0x00BC
+ 55c:	90 91 bd 00 	lds	r25, 0x00BD
+ 560:	81 30       	cpi	r24, 0x01	; 1
+ 562:	91 05       	cpc	r25, r1
+ 564:	91 f4       	brne	.+36     	; 0x58a <_Z17convert_PWM_valuev+0x32>
+	{
+		PWM_value_1 = converted_absolute_value_1*38;
+ 566:	40 91 c6 00 	lds	r20, 0x00C6
+ 56a:	50 91 c7 00 	lds	r21, 0x00C7
+ 56e:	26 e2       	ldi	r18, 0x26	; 38
+ 570:	30 e0       	ldi	r19, 0x00	; 0
+ 572:	42 9f       	mul	r20, r18
+ 574:	c0 01       	movw	r24, r0
+ 576:	43 9f       	mul	r20, r19
+ 578:	90 0d       	add	r25, r0
+ 57a:	52 9f       	mul	r21, r18
+ 57c:	90 0d       	add	r25, r0
+ 57e:	11 24       	eor	r1, r1
+ 580:	90 93 c3 00 	sts	0x00C3, r25
+ 584:	80 93 c2 00 	sts	0x00C2, r24
+ 588:	08 95       	ret
+	}	
+	else 
+	if (ADC_Channnel == 2)
+ 58a:	80 91 bc 00 	lds	r24, 0x00BC
+ 58e:	90 91 bd 00 	lds	r25, 0x00BD
+ 592:	82 30       	cpi	r24, 0x02	; 2
+ 594:	91 05       	cpc	r25, r1
+ 596:	89 f4       	brne	.+34     	; 0x5ba <_Z17convert_PWM_valuev+0x62>
+	{
+		PWM_value_2 = converted_absolute_value_2*38;
+ 598:	40 91 c4 00 	lds	r20, 0x00C4
+ 59c:	50 91 c5 00 	lds	r21, 0x00C5
+ 5a0:	26 e2       	ldi	r18, 0x26	; 38
+ 5a2:	30 e0       	ldi	r19, 0x00	; 0
+ 5a4:	42 9f       	mul	r20, r18
+ 5a6:	c0 01       	movw	r24, r0
+ 5a8:	43 9f       	mul	r20, r19
+ 5aa:	90 0d       	add	r25, r0
+ 5ac:	52 9f       	mul	r21, r18
+ 5ae:	90 0d       	add	r25, r0
+ 5b0:	11 24       	eor	r1, r1
+ 5b2:	90 93 c1 00 	sts	0x00C1, r25
+ 5b6:	80 93 c0 00 	sts	0x00C0, r24
+ 5ba:	08 95       	ret
+
+000005bc <_Z21Segregate_ADC_Vectorsv>:
+	}
+}
+
+void Segregate_ADC_Vectors (void)
+{
+	if (ADC_Channnel == 1)
+ 5bc:	80 91 bc 00 	lds	r24, 0x00BC
+ 5c0:	90 91 bd 00 	lds	r25, 0x00BD
+ 5c4:	81 30       	cpi	r24, 0x01	; 1
+ 5c6:	91 05       	cpc	r25, r1
+ 5c8:	59 f4       	brne	.+22     	; 0x5e0 <_Z21Segregate_ADC_Vectorsv+0x24>
+	{
+		converted_value_1 = Channel_1_ADC_value - 515;
+ 5ca:	80 91 ba 00 	lds	r24, 0x00BA
+ 5ce:	90 91 bb 00 	lds	r25, 0x00BB
+ 5d2:	83 50       	subi	r24, 0x03	; 3
+ 5d4:	92 40       	sbci	r25, 0x02	; 2
+ 5d6:	90 93 cb 00 	sts	0x00CB, r25
+ 5da:	80 93 ca 00 	sts	0x00CA, r24
+ 5de:	08 95       	ret
+	}
+	
+	else
+	if (ADC_Channnel == 2)
+ 5e0:	80 91 bc 00 	lds	r24, 0x00BC
+ 5e4:	90 91 bd 00 	lds	r25, 0x00BD
+ 5e8:	82 30       	cpi	r24, 0x02	; 2
+ 5ea:	91 05       	cpc	r25, r1
+ 5ec:	51 f4       	brne	.+20     	; 0x602 <_Z21Segregate_ADC_Vectorsv+0x46>
+	{
+		converted_value_2 = Channel_2_ADC_value - 513;
+ 5ee:	80 91 b8 00 	lds	r24, 0x00B8
+ 5f2:	90 91 b9 00 	lds	r25, 0x00B9
+ 5f6:	81 50       	subi	r24, 0x01	; 1
+ 5f8:	92 40       	sbci	r25, 0x02	; 2
+ 5fa:	90 93 c9 00 	sts	0x00C9, r25
+ 5fe:	80 93 c8 00 	sts	0x00C8, r24
+ 602:	08 95       	ret
+
+00000604 <main>:
+volatile int ADC_Channnel = 0;
+volatile int Channel_1_ADC_value = 0;
+volatile int Channel_2_ADC_value = 0;
+
+int main(void)
+{
+ 604:	cf 93       	push	r28
+ 606:	df 93       	push	r29
+ 608:	cd b7       	in	r28, 0x3d	; 61
+ 60a:	de b7       	in	r29, 0x3e	; 62
+ 60c:	6c 97       	sbiw	r28, 0x1c	; 28
+ 60e:	0f b6       	in	r0, 0x3f	; 63
+ 610:	f8 94       	cli
+ 612:	de bf       	out	0x3e, r29	; 62
+ 614:	0f be       	out	0x3f, r0	; 63
+ 616:	cd bf       	out	0x3d, r28	; 61
+	MCUCSR |= (1<<JTD);
+ 618:	84 b7       	in	r24, 0x34	; 52
+ 61a:	80 68       	ori	r24, 0x80	; 128
+ 61c:	84 bf       	out	0x34, r24	; 52
+	MCUCSR |= (1<<JTD);
+ 61e:	84 b7       	in	r24, 0x34	; 52
+ 620:	80 68       	ori	r24, 0x80	; 128
+ 622:	84 bf       	out	0x34, r24	; 52
+	
+	DDRD = 0xFF;
+ 624:	8f ef       	ldi	r24, 0xFF	; 255
+ 626:	81 bb       	out	0x11, r24	; 17
+	
+	DataDir_MrLCDsControl |= (1<<LightSwitch) | (1<<ReadWrite) | (1<<BiPolarMood);	
+ 628:	84 b3       	in	r24, 0x14	; 20
+ 62a:	80 6e       	ori	r24, 0xE0	; 224
+ 62c:	84 bb       	out	0x14, r24	; 20
+	
+	PORTD = 0x00;
+ 62e:	12 ba       	out	0x12, r1	; 18
+
+	sei();
+ 630:	78 94       	sei
+ 632:	85 ea       	ldi	r24, 0xA5	; 165
+ 634:	9e e0       	ldi	r25, 0x0E	; 14
+ 636:	01 97       	sbiw	r24, 0x01	; 1
+ 638:	f1 f7       	brne	.-4      	; 0x636 <main+0x32>
+ 63a:	00 c0       	rjmp	.+0      	; 0x63c <main+0x38>
+ 63c:	00 00       	nop
+	
+	_delay_ms(15);
+	Send_A_Command(0x01);//clrscr();
+ 63e:	81 e0       	ldi	r24, 0x01	; 1
+ 640:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 644:	83 ef       	ldi	r24, 0xF3	; 243
+ 646:	91 e0       	ldi	r25, 0x01	; 1
+ 648:	01 97       	sbiw	r24, 0x01	; 1
+ 64a:	f1 f7       	brne	.-4      	; 0x648 <main+0x44>
+ 64c:	00 c0       	rjmp	.+0      	; 0x64e <main+0x4a>
+ 64e:	00 00       	nop
+	_delay_ms(2);
+	Send_A_Command(0x38);
+ 650:	88 e3       	ldi	r24, 0x38	; 56
+ 652:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 656:	90 e1       	ldi	r25, 0x10	; 16
+ 658:	9a 95       	dec	r25
+ 65a:	f1 f7       	brne	.-4      	; 0x658 <main+0x54>
+ 65c:	00 c0       	rjmp	.+0      	; 0x65e <main+0x5a>
+	_delay_us(50);
+	Send_A_Command(0b00001100);
+ 65e:	8c e0       	ldi	r24, 0x0C	; 12
+ 660:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 664:	80 e1       	ldi	r24, 0x10	; 16
+ 666:	8a 95       	dec	r24
+ 668:	f1 f7       	brne	.-4      	; 0x666 <main+0x62>
+ 66a:	00 c0       	rjmp	.+0      	; 0x66c <main+0x68>
+	char Reduced_Value_channel_2[4];	
+
+	char OCR1A_value[6];
+	char OCR1B_value[6];
+	
+	Send_A_Command(0x80);//clrscr();
+ 66c:	80 e8       	ldi	r24, 0x80	; 128
+ 66e:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 672:	83 ef       	ldi	r24, 0xF3	; 243
+ 674:	91 e0       	ldi	r25, 0x01	; 1
+ 676:	01 97       	sbiw	r24, 0x01	; 1
+ 678:	f1 f7       	brne	.-4      	; 0x676 <main+0x72>
+ 67a:	00 c0       	rjmp	.+0      	; 0x67c <main+0x78>
+ 67c:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("X");
+ 67e:	84 ea       	ldi	r24, 0xA4	; 164
+ 680:	90 e0       	ldi	r25, 0x00	; 0
+ 682:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 686:	83 ef       	ldi	r24, 0xF3	; 243
+ 688:	91 e0       	ldi	r25, 0x01	; 1
+ 68a:	01 97       	sbiw	r24, 0x01	; 1
+ 68c:	f1 f7       	brne	.-4      	; 0x68a <main+0x86>
+ 68e:	00 c0       	rjmp	.+0      	; 0x690 <main+0x8c>
+ 690:	00 00       	nop
+	_delay_ms(2);
+	
+	Send_A_Command(0x80 + 10);//clrscr();
+ 692:	8a e8       	ldi	r24, 0x8A	; 138
+ 694:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 698:	83 ef       	ldi	r24, 0xF3	; 243
+ 69a:	91 e0       	ldi	r25, 0x01	; 1
+ 69c:	01 97       	sbiw	r24, 0x01	; 1
+ 69e:	f1 f7       	brne	.-4      	; 0x69c <main+0x98>
+ 6a0:	00 c0       	rjmp	.+0      	; 0x6a2 <main+0x9e>
+ 6a2:	00 00       	nop
+	_delay_ms(2);
+	Send_A_String("Y");
+ 6a4:	86 ea       	ldi	r24, 0xA6	; 166
+ 6a6:	90 e0       	ldi	r25, 0x00	; 0
+ 6a8:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 6ac:	83 ef       	ldi	r24, 0xF3	; 243
+ 6ae:	91 e0       	ldi	r25, 0x01	; 1
+ 6b0:	01 97       	sbiw	r24, 0x01	; 1
+ 6b2:	f1 f7       	brne	.-4      	; 0x6b0 <main+0xac>
+ 6b4:	00 c0       	rjmp	.+0      	; 0x6b6 <main+0xb2>
+ 6b6:	00 00       	nop
+	_delay_ms(2);
+	
+		Send_A_Command(0x94);//clrscr();
+ 6b8:	84 e9       	ldi	r24, 0x94	; 148
+ 6ba:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 6be:	83 ef       	ldi	r24, 0xF3	; 243
+ 6c0:	91 e0       	ldi	r25, 0x01	; 1
+ 6c2:	01 97       	sbiw	r24, 0x01	; 1
+ 6c4:	f1 f7       	brne	.-4      	; 0x6c2 <main+0xbe>
+ 6c6:	00 c0       	rjmp	.+0      	; 0x6c8 <main+0xc4>
+ 6c8:	00 00       	nop
+		_delay_ms(2);
+		Send_A_String("A");
+ 6ca:	88 ea       	ldi	r24, 0xA8	; 168
+ 6cc:	90 e0       	ldi	r25, 0x00	; 0
+ 6ce:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 6d2:	83 ef       	ldi	r24, 0xF3	; 243
+ 6d4:	91 e0       	ldi	r25, 0x01	; 1
+ 6d6:	01 97       	sbiw	r24, 0x01	; 1
+ 6d8:	f1 f7       	brne	.-4      	; 0x6d6 <main+0xd2>
+ 6da:	00 c0       	rjmp	.+0      	; 0x6dc <main+0xd8>
+ 6dc:	00 00       	nop
+		_delay_ms(2);
+		
+		Send_A_Command(0x94+10);//clrscr();
+ 6de:	8e e9       	ldi	r24, 0x9E	; 158
+ 6e0:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 6e4:	83 ef       	ldi	r24, 0xF3	; 243
+ 6e6:	91 e0       	ldi	r25, 0x01	; 1
+ 6e8:	01 97       	sbiw	r24, 0x01	; 1
+ 6ea:	f1 f7       	brne	.-4      	; 0x6e8 <main+0xe4>
+ 6ec:	00 c0       	rjmp	.+0      	; 0x6ee <main+0xea>
+ 6ee:	00 00       	nop
+		_delay_ms(2);
+		Send_A_String("B");
+ 6f0:	8a ea       	ldi	r24, 0xAA	; 170
+ 6f2:	90 e0       	ldi	r25, 0x00	; 0
+ 6f4:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 6f8:	83 ef       	ldi	r24, 0xF3	; 243
+ 6fa:	91 e0       	ldi	r25, 0x01	; 1
+ 6fc:	01 97       	sbiw	r24, 0x01	; 1
+ 6fe:	f1 f7       	brne	.-4      	; 0x6fc <main+0xf8>
+ 700:	00 c0       	rjmp	.+0      	; 0x702 <main+0xfe>
+ 702:	00 00       	nop
+		_delay_ms(2);
+		
+		Send_A_Command(0xD4);//clrscr();
+ 704:	84 ed       	ldi	r24, 0xD4	; 212
+ 706:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 70a:	83 ef       	ldi	r24, 0xF3	; 243
+ 70c:	91 e0       	ldi	r25, 0x01	; 1
+ 70e:	01 97       	sbiw	r24, 0x01	; 1
+ 710:	f1 f7       	brne	.-4      	; 0x70e <main+0x10a>
+ 712:	00 c0       	rjmp	.+0      	; 0x714 <main+0x110>
+ 714:	00 00       	nop
+		_delay_ms(2);
+		Send_A_String("1A");
+ 716:	8c ea       	ldi	r24, 0xAC	; 172
+ 718:	90 e0       	ldi	r25, 0x00	; 0
+ 71a:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 71e:	83 ef       	ldi	r24, 0xF3	; 243
+ 720:	91 e0       	ldi	r25, 0x01	; 1
+ 722:	01 97       	sbiw	r24, 0x01	; 1
+ 724:	f1 f7       	brne	.-4      	; 0x722 <main+0x11e>
+ 726:	00 c0       	rjmp	.+0      	; 0x728 <main+0x124>
+ 728:	00 00       	nop
+		_delay_ms(2);
+		
+		Send_A_Command(0xD4+10);//clrscr();
+ 72a:	8e ed       	ldi	r24, 0xDE	; 222
+ 72c:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 730:	83 ef       	ldi	r24, 0xF3	; 243
+ 732:	91 e0       	ldi	r25, 0x01	; 1
+ 734:	01 97       	sbiw	r24, 0x01	; 1
+ 736:	f1 f7       	brne	.-4      	; 0x734 <main+0x130>
+ 738:	00 c0       	rjmp	.+0      	; 0x73a <main+0x136>
+ 73a:	00 00       	nop
+		_delay_ms(2);
+		Send_A_String("1B");
+ 73c:	8f ea       	ldi	r24, 0xAF	; 175
+ 73e:	90 e0       	ldi	r25, 0x00	; 0
+ 740:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 744:	83 ef       	ldi	r24, 0xF3	; 243
+ 746:	91 e0       	ldi	r25, 0x01	; 1
+ 748:	01 97       	sbiw	r24, 0x01	; 1
+ 74a:	f1 f7       	brne	.-4      	; 0x748 <main+0x144>
+ 74c:	00 c0       	rjmp	.+0      	; 0x74e <main+0x14a>
+ 74e:	00 00       	nop
+		_delay_ms(2);
+// 	
+	initialize_ADC();
+ 750:	0e 94 49 00 	call	0x92	; 0x92 <_Z14initialize_ADCv>
+	initialise_PWM();
+ 754:	0e 94 52 00 	call	0xa4	; 0xa4 <_Z14initialise_PWMv>
+		{
+			itoa(Channel_1_ADC_value,ValueSampled_channel_1, 10);
+			
+			Send_A_Command(0x80 + 2);//();
+			_delay_ms(2);
+			Send_A_String("     ");
+ 758:	02 eb       	ldi	r16, 0xB2	; 178
+ 75a:	10 e0       	ldi	r17, 0x00	; 0
+ 75c:	87 e8       	ldi	r24, 0x87	; 135
+ 75e:	93 e1       	ldi	r25, 0x13	; 19
+ 760:	01 97       	sbiw	r24, 0x01	; 1
+ 762:	f1 f7       	brne	.-4      	; 0x760 <main+0x15c>
+ 764:	00 c0       	rjmp	.+0      	; 0x766 <main+0x162>
+ 766:	00 00       	nop
+// 		_delay_ms(1000);
+// 	}	
+	while (1)
+	{	
+		_delay_ms(20);		
+		ADCSRA |= (1<<ADSC);
+ 768:	36 9a       	sbi	0x06, 6	; 6
+ 76a:	87 e8       	ldi	r24, 0x87	; 135
+ 76c:	93 e1       	ldi	r25, 0x13	; 19
+ 76e:	01 97       	sbiw	r24, 0x01	; 1
+ 770:	f1 f7       	brne	.-4      	; 0x76e <main+0x16a>
+ 772:	00 c0       	rjmp	.+0      	; 0x774 <main+0x170>
+ 774:	00 00       	nop
+		_delay_ms(20);
+			
+		if (ADC_Channnel == 1)
+ 776:	80 91 bc 00 	lds	r24, 0x00BC
+ 77a:	90 91 bd 00 	lds	r25, 0x00BD
+ 77e:	81 30       	cpi	r24, 0x01	; 1
+ 780:	91 05       	cpc	r25, r1
+ 782:	09 f0       	breq	.+2      	; 0x786 <main+0x182>
+ 784:	af c0       	rjmp	.+350    	; 0x8e4 <main+0x2e0>
+		{
+			itoa(Channel_1_ADC_value,ValueSampled_channel_1, 10);
+ 786:	80 91 ba 00 	lds	r24, 0x00BA
+ 78a:	90 91 bb 00 	lds	r25, 0x00BB
+ 78e:	be 01       	movw	r22, r28
+ 790:	63 5f       	subi	r22, 0xF3	; 243
+ 792:	7f 4f       	sbci	r23, 0xFF	; 255
+ 794:	4a e0       	ldi	r20, 0x0A	; 10
+ 796:	50 e0       	ldi	r21, 0x00	; 0
+ 798:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+			
+			Send_A_Command(0x80 + 2);//();
+ 79c:	82 e8       	ldi	r24, 0x82	; 130
+ 79e:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 7a2:	83 ef       	ldi	r24, 0xF3	; 243
+ 7a4:	91 e0       	ldi	r25, 0x01	; 1
+ 7a6:	01 97       	sbiw	r24, 0x01	; 1
+ 7a8:	f1 f7       	brne	.-4      	; 0x7a6 <main+0x1a2>
+ 7aa:	00 c0       	rjmp	.+0      	; 0x7ac <main+0x1a8>
+ 7ac:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ 7ae:	c8 01       	movw	r24, r16
+ 7b0:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 7b4:	83 ef       	ldi	r24, 0xF3	; 243
+ 7b6:	91 e0       	ldi	r25, 0x01	; 1
+ 7b8:	01 97       	sbiw	r24, 0x01	; 1
+ 7ba:	f1 f7       	brne	.-4      	; 0x7b8 <main+0x1b4>
+ 7bc:	00 c0       	rjmp	.+0      	; 0x7be <main+0x1ba>
+ 7be:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0x80 + 2);//();
+ 7c0:	82 e8       	ldi	r24, 0x82	; 130
+ 7c2:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 7c6:	83 ef       	ldi	r24, 0xF3	; 243
+ 7c8:	91 e0       	ldi	r25, 0x01	; 1
+ 7ca:	01 97       	sbiw	r24, 0x01	; 1
+ 7cc:	f1 f7       	brne	.-4      	; 0x7ca <main+0x1c6>
+ 7ce:	00 c0       	rjmp	.+0      	; 0x7d0 <main+0x1cc>
+ 7d0:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(ValueSampled_channel_1);
+ 7d2:	ce 01       	movw	r24, r28
+ 7d4:	0d 96       	adiw	r24, 0x0d	; 13
+ 7d6:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ 7da:	83 ef       	ldi	r24, 0xF3	; 243
+ 7dc:	91 e0       	ldi	r25, 0x01	; 1
+ 7de:	01 97       	sbiw	r24, 0x01	; 1
+ 7e0:	f1 f7       	brne	.-4      	; 0x7de <main+0x1da>
+ 7e2:	00 c0       	rjmp	.+0      	; 0x7e4 <main+0x1e0>
+ 7e4:	00 00       	nop
+			_delay_ms(2);
+			
+			//_delay_ms(20);
+			Segregate_ADC_Vectors();
+ 7e6:	0e 94 de 02 	call	0x5bc	; 0x5bc <_Z21Segregate_ADC_Vectorsv>
+ 7ea:	83 ec       	ldi	r24, 0xC3	; 195
+ 7ec:	99 e0       	ldi	r25, 0x09	; 9
+ 7ee:	01 97       	sbiw	r24, 0x01	; 1
+ 7f0:	f1 f7       	brne	.-4      	; 0x7ee <main+0x1ea>
+ 7f2:	00 c0       	rjmp	.+0      	; 0x7f4 <main+0x1f0>
+ 7f4:	00 00       	nop
+			_delay_ms(10);
+			converted_value_preobfuscation();
+ 7f6:	0e 94 3a 02 	call	0x474	; 0x474 <_Z30converted_value_preobfuscationv>
+ 7fa:	83 ec       	ldi	r24, 0xC3	; 195
+ 7fc:	99 e0       	ldi	r25, 0x09	; 9
+ 7fe:	01 97       	sbiw	r24, 0x01	; 1
+ 800:	f1 f7       	brne	.-4      	; 0x7fe <main+0x1fa>
+ 802:	00 c0       	rjmp	.+0      	; 0x804 <main+0x200>
+ 804:	00 00       	nop
+			_delay_ms(10);
+			Assign_motor_direction();
+ 806:	0e 94 07 02 	call	0x40e	; 0x40e <_Z22Assign_motor_directionv>
+					
+			itoa(converted_value_1,Reduced_Value_channel_1,10);
+ 80a:	80 91 ca 00 	lds	r24, 0x00CA
+ 80e:	90 91 cb 00 	lds	r25, 0x00CB
+ 812:	be 01       	movw	r22, r28
+ 814:	67 5f       	subi	r22, 0xF7	; 247
+ 816:	7f 4f       	sbci	r23, 0xFF	; 255
+ 818:	4a e0       	ldi	r20, 0x0A	; 10
+ 81a:	50 e0       	ldi	r21, 0x00	; 0
+ 81c:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+			
+			Send_A_Command(0x94 + 2);//();
+ 820:	86 e9       	ldi	r24, 0x96	; 150
+ 822:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 826:	83 ef       	ldi	r24, 0xF3	; 243
+ 828:	91 e0       	ldi	r25, 0x01	; 1
+ 82a:	01 97       	sbiw	r24, 0x01	; 1
+ 82c:	f1 f7       	brne	.-4      	; 0x82a <main+0x226>
+ 82e:	00 c0       	rjmp	.+0      	; 0x830 <main+0x22c>
+ 830:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ 832:	c8 01       	movw	r24, r16
+ 834:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 838:	83 ef       	ldi	r24, 0xF3	; 243
+ 83a:	91 e0       	ldi	r25, 0x01	; 1
+ 83c:	01 97       	sbiw	r24, 0x01	; 1
+ 83e:	f1 f7       	brne	.-4      	; 0x83c <main+0x238>
+ 840:	00 c0       	rjmp	.+0      	; 0x842 <main+0x23e>
+ 842:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0x94 + 2);//();
+ 844:	86 e9       	ldi	r24, 0x96	; 150
+ 846:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 84a:	83 ef       	ldi	r24, 0xF3	; 243
+ 84c:	91 e0       	ldi	r25, 0x01	; 1
+ 84e:	01 97       	sbiw	r24, 0x01	; 1
+ 850:	f1 f7       	brne	.-4      	; 0x84e <main+0x24a>
+ 852:	00 c0       	rjmp	.+0      	; 0x854 <main+0x250>
+ 854:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(Reduced_Value_channel_1);
+ 856:	ce 01       	movw	r24, r28
+ 858:	09 96       	adiw	r24, 0x09	; 9
+ 85a:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ 85e:	83 ef       	ldi	r24, 0xF3	; 243
+ 860:	91 e0       	ldi	r25, 0x01	; 1
+ 862:	01 97       	sbiw	r24, 0x01	; 1
+ 864:	f1 f7       	brne	.-4      	; 0x862 <main+0x25e>
+ 866:	00 c0       	rjmp	.+0      	; 0x868 <main+0x264>
+ 868:	00 00       	nop
+ 86a:	87 e8       	ldi	r24, 0x87	; 135
+ 86c:	93 e1       	ldi	r25, 0x13	; 19
+ 86e:	01 97       	sbiw	r24, 0x01	; 1
+ 870:	f1 f7       	brne	.-4      	; 0x86e <main+0x26a>
+ 872:	00 c0       	rjmp	.+0      	; 0x874 <main+0x270>
+ 874:	00 00       	nop
+			_delay_ms(2);
+						
+			_delay_ms(20);
+			converted_value_absolution();
+ 876:	0e 94 5e 02 	call	0x4bc	; 0x4bc <_Z26converted_value_absolutionv>
+			convert_PWM_value();
+ 87a:	0e 94 ac 02 	call	0x558	; 0x558 <_Z17convert_PWM_valuev>
+			
+			itoa(PWM_value_1,OCR1A_value,10);
+ 87e:	80 91 c2 00 	lds	r24, 0x00C2
+ 882:	90 91 c3 00 	lds	r25, 0x00C3
+ 886:	be 01       	movw	r22, r28
+ 888:	69 5e       	subi	r22, 0xE9	; 233
+ 88a:	7f 4f       	sbci	r23, 0xFF	; 255
+ 88c:	4a e0       	ldi	r20, 0x0A	; 10
+ 88e:	50 e0       	ldi	r21, 0x00	; 0
+ 890:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+			
+			Send_A_Command(0xD4 + 3);//();
+ 894:	87 ed       	ldi	r24, 0xD7	; 215
+ 896:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 89a:	83 ef       	ldi	r24, 0xF3	; 243
+ 89c:	91 e0       	ldi	r25, 0x01	; 1
+ 89e:	01 97       	sbiw	r24, 0x01	; 1
+ 8a0:	f1 f7       	brne	.-4      	; 0x89e <main+0x29a>
+ 8a2:	00 c0       	rjmp	.+0      	; 0x8a4 <main+0x2a0>
+ 8a4:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ 8a6:	c8 01       	movw	r24, r16
+ 8a8:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 8ac:	83 ef       	ldi	r24, 0xF3	; 243
+ 8ae:	91 e0       	ldi	r25, 0x01	; 1
+ 8b0:	01 97       	sbiw	r24, 0x01	; 1
+ 8b2:	f1 f7       	brne	.-4      	; 0x8b0 <main+0x2ac>
+ 8b4:	00 c0       	rjmp	.+0      	; 0x8b6 <main+0x2b2>
+ 8b6:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0xD4  + 3);//();
+ 8b8:	87 ed       	ldi	r24, 0xD7	; 215
+ 8ba:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 8be:	83 ef       	ldi	r24, 0xF3	; 243
+ 8c0:	91 e0       	ldi	r25, 0x01	; 1
+ 8c2:	01 97       	sbiw	r24, 0x01	; 1
+ 8c4:	f1 f7       	brne	.-4      	; 0x8c2 <main+0x2be>
+ 8c6:	00 c0       	rjmp	.+0      	; 0x8c8 <main+0x2c4>
+ 8c8:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(OCR1A_value);
+ 8ca:	ce 01       	movw	r24, r28
+ 8cc:	47 96       	adiw	r24, 0x17	; 23
+ 8ce:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ 8d2:	83 ef       	ldi	r24, 0xF3	; 243
+ 8d4:	91 e0       	ldi	r25, 0x01	; 1
+ 8d6:	01 97       	sbiw	r24, 0x01	; 1
+ 8d8:	f1 f7       	brne	.-4      	; 0x8d6 <main+0x2d2>
+ 8da:	00 c0       	rjmp	.+0      	; 0x8dc <main+0x2d8>
+ 8dc:	00 00       	nop
+			_delay_ms(2);
+			
+			initialise_PWM_1();	
+ 8de:	0e 94 63 00 	call	0xc6	; 0xc6 <_Z16initialise_PWM_1v>
+ 8e2:	3c cf       	rjmp	.-392    	; 0x75c <main+0x158>
+		}	
+		else
+		if (ADC_Channnel == 2)
+ 8e4:	80 91 bc 00 	lds	r24, 0x00BC
+ 8e8:	90 91 bd 00 	lds	r25, 0x00BD
+ 8ec:	82 30       	cpi	r24, 0x02	; 2
+ 8ee:	91 05       	cpc	r25, r1
+ 8f0:	09 f0       	breq	.+2      	; 0x8f4 <main+0x2f0>
+ 8f2:	34 cf       	rjmp	.-408    	; 0x75c <main+0x158>
+		{
+			itoa(Channel_2_ADC_value,ValueSampled_channel_2, 10);
+ 8f4:	80 91 b8 00 	lds	r24, 0x00B8
+ 8f8:	90 91 b9 00 	lds	r25, 0x00B9
+ 8fc:	be 01       	movw	r22, r28
+ 8fe:	6b 5f       	subi	r22, 0xFB	; 251
+ 900:	7f 4f       	sbci	r23, 0xFF	; 255
+ 902:	4a e0       	ldi	r20, 0x0A	; 10
+ 904:	50 e0       	ldi	r21, 0x00	; 0
+ 906:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+			
+			Send_A_Command(0x80+ 10 + 2);//();
+ 90a:	8c e8       	ldi	r24, 0x8C	; 140
+ 90c:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 910:	83 ef       	ldi	r24, 0xF3	; 243
+ 912:	91 e0       	ldi	r25, 0x01	; 1
+ 914:	01 97       	sbiw	r24, 0x01	; 1
+ 916:	f1 f7       	brne	.-4      	; 0x914 <main+0x310>
+ 918:	00 c0       	rjmp	.+0      	; 0x91a <main+0x316>
+ 91a:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ 91c:	c8 01       	movw	r24, r16
+ 91e:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 922:	83 ef       	ldi	r24, 0xF3	; 243
+ 924:	91 e0       	ldi	r25, 0x01	; 1
+ 926:	01 97       	sbiw	r24, 0x01	; 1
+ 928:	f1 f7       	brne	.-4      	; 0x926 <main+0x322>
+ 92a:	00 c0       	rjmp	.+0      	; 0x92c <main+0x328>
+ 92c:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0x80+ 10 + 2);//();
+ 92e:	8c e8       	ldi	r24, 0x8C	; 140
+ 930:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 934:	83 ef       	ldi	r24, 0xF3	; 243
+ 936:	91 e0       	ldi	r25, 0x01	; 1
+ 938:	01 97       	sbiw	r24, 0x01	; 1
+ 93a:	f1 f7       	brne	.-4      	; 0x938 <main+0x334>
+ 93c:	00 c0       	rjmp	.+0      	; 0x93e <main+0x33a>
+ 93e:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(ValueSampled_channel_2);
+ 940:	ce 01       	movw	r24, r28
+ 942:	05 96       	adiw	r24, 0x05	; 5
+ 944:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ 948:	83 ef       	ldi	r24, 0xF3	; 243
+ 94a:	91 e0       	ldi	r25, 0x01	; 1
+ 94c:	01 97       	sbiw	r24, 0x01	; 1
+ 94e:	f1 f7       	brne	.-4      	; 0x94c <main+0x348>
+ 950:	00 c0       	rjmp	.+0      	; 0x952 <main+0x34e>
+ 952:	00 00       	nop
+			_delay_ms(2);
+
+			// _delay_ms(20);
+			Segregate_ADC_Vectors();
+ 954:	0e 94 de 02 	call	0x5bc	; 0x5bc <_Z21Segregate_ADC_Vectorsv>
+ 958:	83 ec       	ldi	r24, 0xC3	; 195
+ 95a:	99 e0       	ldi	r25, 0x09	; 9
+ 95c:	01 97       	sbiw	r24, 0x01	; 1
+ 95e:	f1 f7       	brne	.-4      	; 0x95c <main+0x358>
+ 960:	00 c0       	rjmp	.+0      	; 0x962 <main+0x35e>
+ 962:	00 00       	nop
+			_delay_ms(10);
+			converted_value_preobfuscation();
+ 964:	0e 94 3a 02 	call	0x474	; 0x474 <_Z30converted_value_preobfuscationv>
+ 968:	83 ec       	ldi	r24, 0xC3	; 195
+ 96a:	99 e0       	ldi	r25, 0x09	; 9
+ 96c:	01 97       	sbiw	r24, 0x01	; 1
+ 96e:	f1 f7       	brne	.-4      	; 0x96c <main+0x368>
+ 970:	00 c0       	rjmp	.+0      	; 0x972 <main+0x36e>
+ 972:	00 00       	nop
+			_delay_ms(10);
+			Assign_motor_direction();
+ 974:	0e 94 07 02 	call	0x40e	; 0x40e <_Z22Assign_motor_directionv>
+
+			itoa(converted_value_2,Reduced_Value_channel_2,10);
+ 978:	80 91 c8 00 	lds	r24, 0x00C8
+ 97c:	90 91 c9 00 	lds	r25, 0x00C9
+ 980:	be 01       	movw	r22, r28
+ 982:	6f 5f       	subi	r22, 0xFF	; 255
+ 984:	7f 4f       	sbci	r23, 0xFF	; 255
+ 986:	4a e0       	ldi	r20, 0x0A	; 10
+ 988:	50 e0       	ldi	r21, 0x00	; 0
+ 98a:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+
+			Send_A_Command(0x94+ 10 + 2);//();
+ 98e:	80 ea       	ldi	r24, 0xA0	; 160
+ 990:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 994:	83 ef       	ldi	r24, 0xF3	; 243
+ 996:	91 e0       	ldi	r25, 0x01	; 1
+ 998:	01 97       	sbiw	r24, 0x01	; 1
+ 99a:	f1 f7       	brne	.-4      	; 0x998 <main+0x394>
+ 99c:	00 c0       	rjmp	.+0      	; 0x99e <main+0x39a>
+ 99e:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ 9a0:	c8 01       	movw	r24, r16
+ 9a2:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ 9a6:	83 ef       	ldi	r24, 0xF3	; 243
+ 9a8:	91 e0       	ldi	r25, 0x01	; 1
+ 9aa:	01 97       	sbiw	r24, 0x01	; 1
+ 9ac:	f1 f7       	brne	.-4      	; 0x9aa <main+0x3a6>
+ 9ae:	00 c0       	rjmp	.+0      	; 0x9b0 <main+0x3ac>
+ 9b0:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0x94+ 10 + 2);//();
+ 9b2:	80 ea       	ldi	r24, 0xA0	; 160
+ 9b4:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ 9b8:	83 ef       	ldi	r24, 0xF3	; 243
+ 9ba:	91 e0       	ldi	r25, 0x01	; 1
+ 9bc:	01 97       	sbiw	r24, 0x01	; 1
+ 9be:	f1 f7       	brne	.-4      	; 0x9bc <main+0x3b8>
+ 9c0:	00 c0       	rjmp	.+0      	; 0x9c2 <main+0x3be>
+ 9c2:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(Reduced_Value_channel_2);
+ 9c4:	ce 01       	movw	r24, r28
+ 9c6:	01 96       	adiw	r24, 0x01	; 1
+ 9c8:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ 9cc:	83 ef       	ldi	r24, 0xF3	; 243
+ 9ce:	91 e0       	ldi	r25, 0x01	; 1
+ 9d0:	01 97       	sbiw	r24, 0x01	; 1
+ 9d2:	f1 f7       	brne	.-4      	; 0x9d0 <main+0x3cc>
+ 9d4:	00 c0       	rjmp	.+0      	; 0x9d6 <main+0x3d2>
+ 9d6:	00 00       	nop
+ 9d8:	87 e8       	ldi	r24, 0x87	; 135
+ 9da:	93 e1       	ldi	r25, 0x13	; 19
+ 9dc:	01 97       	sbiw	r24, 0x01	; 1
+ 9de:	f1 f7       	brne	.-4      	; 0x9dc <main+0x3d8>
+ 9e0:	00 c0       	rjmp	.+0      	; 0x9e2 <main+0x3de>
+ 9e2:	00 00       	nop
+			_delay_ms(2);
+
+			_delay_ms(20);
+			converted_value_absolution();
+ 9e4:	0e 94 5e 02 	call	0x4bc	; 0x4bc <_Z26converted_value_absolutionv>
+			convert_PWM_value();
+ 9e8:	0e 94 ac 02 	call	0x558	; 0x558 <_Z17convert_PWM_valuev>
+
+			itoa(PWM_value_2,OCR1B_value,10);
+ 9ec:	80 91 c0 00 	lds	r24, 0x00C0
+ 9f0:	90 91 c1 00 	lds	r25, 0x00C1
+ 9f4:	be 01       	movw	r22, r28
+ 9f6:	6f 5e       	subi	r22, 0xEF	; 239
+ 9f8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 9fa:	4a e0       	ldi	r20, 0x0A	; 10
+ 9fc:	50 e0       	ldi	r21, 0x00	; 0
+ 9fe:	0e 94 a3 05 	call	0xb46	; 0xb46 <itoa>
+
+			Send_A_Command(0xD4+ 10 + 3);//();
+ a02:	81 ee       	ldi	r24, 0xE1	; 225
+ a04:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ a08:	83 ef       	ldi	r24, 0xF3	; 243
+ a0a:	91 e0       	ldi	r25, 0x01	; 1
+ a0c:	01 97       	sbiw	r24, 0x01	; 1
+ a0e:	f1 f7       	brne	.-4      	; 0xa0c <main+0x408>
+ a10:	00 c0       	rjmp	.+0      	; 0xa12 <main+0x40e>
+ a12:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String("     ");
+ a14:	c8 01       	movw	r24, r16
+ a16:	0e 94 cd 00 	call	0x19a	; 0x19a <_Z13Send_A_StringPc>
+ a1a:	83 ef       	ldi	r24, 0xF3	; 243
+ a1c:	91 e0       	ldi	r25, 0x01	; 1
+ a1e:	01 97       	sbiw	r24, 0x01	; 1
+ a20:	f1 f7       	brne	.-4      	; 0xa1e <main+0x41a>
+ a22:	00 c0       	rjmp	.+0      	; 0xa24 <main+0x420>
+ a24:	00 00       	nop
+			_delay_ms(2);
+			Send_A_Command(0xD4+ 10 + 3);//();
+ a26:	81 ee       	ldi	r24, 0xE1	; 225
+ a28:	0e 94 a8 00 	call	0x150	; 0x150 <_Z14Send_A_Commandc>
+ a2c:	83 ef       	ldi	r24, 0xF3	; 243
+ a2e:	91 e0       	ldi	r25, 0x01	; 1
+ a30:	01 97       	sbiw	r24, 0x01	; 1
+ a32:	f1 f7       	brne	.-4      	; 0xa30 <main+0x42c>
+ a34:	00 c0       	rjmp	.+0      	; 0xa36 <main+0x432>
+ a36:	00 00       	nop
+			_delay_ms(2);
+			Send_A_String_inst(OCR1B_value);
+ a38:	ce 01       	movw	r24, r28
+ a3a:	41 96       	adiw	r24, 0x11	; 17
+ a3c:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <_Z18Send_A_String_instPc>
+ a40:	83 ef       	ldi	r24, 0xF3	; 243
+ a42:	91 e0       	ldi	r25, 0x01	; 1
+ a44:	01 97       	sbiw	r24, 0x01	; 1
+ a46:	f1 f7       	brne	.-4      	; 0xa44 <main+0x440>
+ a48:	00 c0       	rjmp	.+0      	; 0xa4a <main+0x446>
+ a4a:	00 00       	nop
+			_delay_ms(2);
+
+			initialise_PWM_2();
+ a4c:	0e 94 6a 00 	call	0xd4	; 0xd4 <_Z16initialise_PWM_2v>
+ a50:	85 ce       	rjmp	.-758    	; 0x75c <main+0x158>
+
+00000a52 <__vector_14>:
+		converted_value_2 = Channel_2_ADC_value - 513;
+	}
+}
+
+ISR (ADC_vect)
+{
+ a52:	1f 92       	push	r1
+ a54:	0f 92       	push	r0
+ a56:	0f b6       	in	r0, 0x3f	; 63
+ a58:	0f 92       	push	r0
+ a5a:	11 24       	eor	r1, r1
+ a5c:	2f 93       	push	r18
+ a5e:	3f 93       	push	r19
+ a60:	8f 93       	push	r24
+ a62:	9f 93       	push	r25
+	uint8_t the_low = ADCL;
+ a64:	84 b1       	in	r24, 0x04	; 4
+	uint8_t the_high = ADCH;
+ a66:	25 b1       	in	r18, 0x05	; 5
+	uint16_t ten_bit_val = the_high<<2 | the_low>>6;
+ a68:	90 e0       	ldi	r25, 0x00	; 0
+ a6a:	08 2e       	mov	r0, r24
+ a6c:	89 2f       	mov	r24, r25
+ a6e:	00 0c       	add	r0, r0
+ a70:	88 1f       	adc	r24, r24
+ a72:	99 0b       	sbc	r25, r25
+ a74:	00 0c       	add	r0, r0
+ a76:	88 1f       	adc	r24, r24
+ a78:	99 1f       	adc	r25, r25
+ a7a:	30 e0       	ldi	r19, 0x00	; 0
+ a7c:	22 0f       	add	r18, r18
+ a7e:	33 1f       	adc	r19, r19
+ a80:	22 0f       	add	r18, r18
+ a82:	33 1f       	adc	r19, r19
+ a84:	82 2b       	or	r24, r18
+ a86:	93 2b       	or	r25, r19
+	a = ten_bit_val;
+ a88:	90 93 cd 00 	sts	0x00CD, r25
+ a8c:	80 93 cc 00 	sts	0x00CC, r24
+	
+	switch (ADMUX)
+ a90:	87 b1       	in	r24, 0x07	; 7
+ a92:	80 36       	cpi	r24, 0x60	; 96
+ a94:	19 f0       	breq	.+6      	; 0xa9c <__vector_14+0x4a>
+ a96:	81 36       	cpi	r24, 0x61	; 97
+ a98:	11 f5       	brne	.+68     	; 0xade <__vector_14+0x8c>
+ a9a:	11 c0       	rjmp	.+34     	; 0xabe <__vector_14+0x6c>
+	{
+		case 0x60:
+		//b=1;
+		Channel_1_ADC_value = a;	
+ a9c:	80 91 cc 00 	lds	r24, 0x00CC
+ aa0:	90 91 cd 00 	lds	r25, 0x00CD
+ aa4:	90 93 bb 00 	sts	0x00BB, r25
+ aa8:	80 93 ba 00 	sts	0x00BA, r24
+		ADC_Channnel = 1;
+ aac:	81 e0       	ldi	r24, 0x01	; 1
+ aae:	90 e0       	ldi	r25, 0x00	; 0
+ ab0:	90 93 bd 00 	sts	0x00BD, r25
+ ab4:	80 93 bc 00 	sts	0x00BC, r24
+		ADMUX = 0x61;		
+ ab8:	81 e6       	ldi	r24, 0x61	; 97
+ aba:	87 b9       	out	0x07, r24	; 7
+		break;
+ abc:	10 c0       	rjmp	.+32     	; 0xade <__vector_14+0x8c>
+		
+ 		case 0x61:
+ 		//b=0;
+ 		Channel_2_ADC_value = a;
+ abe:	80 91 cc 00 	lds	r24, 0x00CC
+ ac2:	90 91 cd 00 	lds	r25, 0x00CD
+ ac6:	90 93 b9 00 	sts	0x00B9, r25
+ aca:	80 93 b8 00 	sts	0x00B8, r24
+		ADC_Channnel = 2;		
+ ace:	82 e0       	ldi	r24, 0x02	; 2
+ ad0:	90 e0       	ldi	r25, 0x00	; 0
+ ad2:	90 93 bd 00 	sts	0x00BD, r25
+ ad6:	80 93 bc 00 	sts	0x00BC, r24
+ 		ADMUX = 0x60;
+ ada:	80 e6       	ldi	r24, 0x60	; 96
+ adc:	87 b9       	out	0x07, r24	; 7
+ 		break;
+	}
+}
+ ade:	9f 91       	pop	r25
+ ae0:	8f 91       	pop	r24
+ ae2:	3f 91       	pop	r19
+ ae4:	2f 91       	pop	r18
+ ae6:	0f 90       	pop	r0
+ ae8:	0f be       	out	0x3f, r0	; 63
+ aea:	0f 90       	pop	r0
+ aec:	1f 90       	pop	r1
+ aee:	18 95       	reti
+
+00000af0 <__vector_9>:
+ISR(TIMER0_OVF_vect)
+{		
+ af0:	1f 92       	push	r1
+ af2:	0f 92       	push	r0
+ af4:	0f b6       	in	r0, 0x3f	; 63
+ af6:	0f 92       	push	r0
+ af8:	11 24       	eor	r1, r1
+ afa:	8f 93       	push	r24
+ afc:	9f 93       	push	r25
+	count++;
+ afe:	80 91 ec 00 	lds	r24, 0x00EC
+ b02:	8f 5f       	subi	r24, 0xFF	; 255
+ b04:	80 93 ec 00 	sts	0x00EC, r24
+	if (count==61)
+ b08:	80 91 ec 00 	lds	r24, 0x00EC
+ b0c:	8d 33       	cpi	r24, 0x3D	; 61
+ b0e:	a1 f4       	brne	.+40     	; 0xb38 <__vector_9+0x48>
+	{
+		// 1 second has elapsed
+		count=0;
+ b10:	10 92 ec 00 	sts	0x00EC, r1
+				
+		count1++;
+ b14:	80 91 eb 00 	lds	r24, 0x00EB
+ b18:	8f 5f       	subi	r24, 0xFF	; 255
+ b1a:	80 93 eb 00 	sts	0x00EB, r24
+		
+		PORTC ^= (1<<PINC3);
+ b1e:	95 b3       	in	r25, 0x15	; 21
+ b20:	88 e0       	ldi	r24, 0x08	; 8
+ b22:	89 27       	eor	r24, r25
+ b24:	85 bb       	out	0x15, r24	; 21
+		
+		if (count1>=20)/////// calibrate it further
+ b26:	80 91 eb 00 	lds	r24, 0x00EB
+ b2a:	84 31       	cpi	r24, 0x14	; 20
+ b2c:	28 f0       	brcs	.+10     	; 0xb38 <__vector_9+0x48>
+		{			
+			//return coin if not dispatched  
+			count1=0;
+ b2e:	10 92 eb 00 	sts	0x00EB, r1
+			FAIL=1;
+ b32:	81 e0       	ldi	r24, 0x01	; 1
+ b34:	80 93 ea 00 	sts	0x00EA, r24
+		}		
+	}
+}
+ b38:	9f 91       	pop	r25
+ b3a:	8f 91       	pop	r24
+ b3c:	0f 90       	pop	r0
+ b3e:	0f be       	out	0x3f, r0	; 63
+ b40:	0f 90       	pop	r0
+ b42:	1f 90       	pop	r1
+ b44:	18 95       	reti
+
+00000b46 <itoa>:
+ b46:	fb 01       	movw	r30, r22
+ b48:	9f 01       	movw	r18, r30
+ b4a:	e8 94       	clt
+ b4c:	42 30       	cpi	r20, 0x02	; 2
+ b4e:	c4 f0       	brlt	.+48     	; 0xb80 <itoa+0x3a>
+ b50:	45 32       	cpi	r20, 0x25	; 37
+ b52:	b4 f4       	brge	.+44     	; 0xb80 <itoa+0x3a>
+ b54:	4a 30       	cpi	r20, 0x0A	; 10
+ b56:	29 f4       	brne	.+10     	; 0xb62 <itoa+0x1c>
+ b58:	97 fb       	bst	r25, 7
+ b5a:	1e f4       	brtc	.+6      	; 0xb62 <itoa+0x1c>
+ b5c:	90 95       	com	r25
+ b5e:	81 95       	neg	r24
+ b60:	9f 4f       	sbci	r25, 0xFF	; 255
+ b62:	64 2f       	mov	r22, r20
+ b64:	77 27       	eor	r23, r23
+ b66:	0e 94 d4 05 	call	0xba8	; 0xba8 <__udivmodhi4>
+ b6a:	80 5d       	subi	r24, 0xD0	; 208
+ b6c:	8a 33       	cpi	r24, 0x3A	; 58
+ b6e:	0c f0       	brlt	.+2      	; 0xb72 <itoa+0x2c>
+ b70:	89 5d       	subi	r24, 0xD9	; 217
+ b72:	81 93       	st	Z+, r24
+ b74:	cb 01       	movw	r24, r22
+ b76:	00 97       	sbiw	r24, 0x00	; 0
+ b78:	a1 f7       	brne	.-24     	; 0xb62 <itoa+0x1c>
+ b7a:	16 f4       	brtc	.+4      	; 0xb80 <itoa+0x3a>
+ b7c:	5d e2       	ldi	r21, 0x2D	; 45
+ b7e:	51 93       	st	Z+, r21
+ b80:	10 82       	st	Z, r1
+ b82:	c9 01       	movw	r24, r18
+ b84:	0c 94 c4 05 	jmp	0xb88	; 0xb88 <strrev>
+
+00000b88 <strrev>:
+ b88:	dc 01       	movw	r26, r24
+ b8a:	fc 01       	movw	r30, r24
+ b8c:	67 2f       	mov	r22, r23
+ b8e:	71 91       	ld	r23, Z+
+ b90:	77 23       	and	r23, r23
+ b92:	e1 f7       	brne	.-8      	; 0xb8c <strrev+0x4>
+ b94:	32 97       	sbiw	r30, 0x02	; 2
+ b96:	04 c0       	rjmp	.+8      	; 0xba0 <strrev+0x18>
+ b98:	7c 91       	ld	r23, X
+ b9a:	6d 93       	st	X+, r22
+ b9c:	70 83       	st	Z, r23
+ b9e:	62 91       	ld	r22, -Z
+ ba0:	ae 17       	cp	r26, r30
+ ba2:	bf 07       	cpc	r27, r31
+ ba4:	c8 f3       	brcs	.-14     	; 0xb98 <strrev+0x10>
+ ba6:	08 95       	ret
+
+00000ba8 <__udivmodhi4>:
+ ba8:	aa 1b       	sub	r26, r26
+ baa:	bb 1b       	sub	r27, r27
+ bac:	51 e1       	ldi	r21, 0x11	; 17
+ bae:	07 c0       	rjmp	.+14     	; 0xbbe <__udivmodhi4_ep>
+
+00000bb0 <__udivmodhi4_loop>:
+ bb0:	aa 1f       	adc	r26, r26
+ bb2:	bb 1f       	adc	r27, r27
+ bb4:	a6 17       	cp	r26, r22
+ bb6:	b7 07       	cpc	r27, r23
+ bb8:	10 f0       	brcs	.+4      	; 0xbbe <__udivmodhi4_ep>
+ bba:	a6 1b       	sub	r26, r22
+ bbc:	b7 0b       	sbc	r27, r23
+
+00000bbe <__udivmodhi4_ep>:
+ bbe:	88 1f       	adc	r24, r24
+ bc0:	99 1f       	adc	r25, r25
+ bc2:	5a 95       	dec	r21
+ bc4:	a9 f7       	brne	.-22     	; 0xbb0 <__udivmodhi4_loop>
+ bc6:	80 95       	com	r24
+ bc8:	90 95       	com	r25
+ bca:	bc 01       	movw	r22, r24
+ bcc:	cd 01       	movw	r24, r26
+ bce:	08 95       	ret
+
+00000bd0 <_exit>:
+ bd0:	f8 94       	cli
+
+00000bd2 <__stop_program>:
+ bd2:	ff cf       	rjmp	.-2      	; 0xbd2 <__stop_program>
